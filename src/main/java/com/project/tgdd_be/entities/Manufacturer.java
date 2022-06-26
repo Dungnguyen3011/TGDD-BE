@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@Table(name="tbl_Manufacturer")
+@Table(name="tbl_manufacturer")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
