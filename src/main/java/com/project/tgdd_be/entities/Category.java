@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name="Categories")
+@Table(name="tbl_categories")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
