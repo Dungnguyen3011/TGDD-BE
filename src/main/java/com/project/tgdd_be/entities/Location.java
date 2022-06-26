@@ -29,7 +29,7 @@ public class Location {
     {
 
     }
-    public Location ( int location_id, String location_name, int store_id){
+    public Location (int location_id, String location_name, int store_id){
         this.location_id = location_id;
         this.location_name= location_name;
         this.store_id=store_id;
@@ -38,7 +38,7 @@ public class Location {
 
 
     /**
-     * @return int return the location_id
+     * @return return the location_id
      */
     public int getLocation_id() {
         return location_id;
