@@ -20,7 +20,8 @@ public class Manufacturer {
     @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
     @Column(name="manufacturer_id")
-	private int manufacturerId;
+	private Integer manufacturerId;
+    
     @Column(name="manufacturer_name")
 	private String manufacturerName;
 	

@@ -26,25 +26,25 @@ public class Product {
 	private String productName;
 	
 	@Column(name="quantity")
-	private int quantity;
+	private Integer quantity;
 	
 	@Column(name="mannufacturer")
 	private String manufacturer;
 	
 	@Column(name="unitPrice")
-	private float unitPrice;
+	private Float unitPrice;
 	
 	@Column(name="description")
 	private String description;
 	
 	@Column(name="rate")
-	private int rate;
+	private Integer rate;
 	
 	@Column(name="category_id")
-	private int categoryId;
+	private Integer categoryId;
 	
 	@Column(name="status")
-	private boolean status;
+	private Boolean status;
 	
 	@Column(name="image")
 	private String image;

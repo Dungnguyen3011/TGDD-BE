@@ -20,12 +20,10 @@ public class Store {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="store_id", nullable = false, updatable = false)
-	private String storeId;
+	private Integer storeId;
 	
 	@Column(name="store_name")
 	private String StoreName;
-	
-
 	
 
 }
