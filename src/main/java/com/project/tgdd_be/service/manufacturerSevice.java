@@ -5,6 +5,7 @@ import java.util.List;
 import com.project.tgdd_be.entities.Manufacturer;
 
 public interface ManufacturerSevice {
+	
 	public List<Manufacturer> listAll();
 	
 	public void save(Manufacturer Manufacturer);

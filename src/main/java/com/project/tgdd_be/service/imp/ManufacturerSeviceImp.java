@@ -8,28 +8,29 @@ import com.project.tgdd_be.repositories.ManufacturerRepository;
 import com.project.tgdd_be.service.ManufacturerSevice;
 
 @Service
+
 public class ManufacturerSeviceImp implements ManufacturerSevice {
 	@Autowired
-	 private ManufacturerRepository Mre;
+	 private ManufacturerRepository Mrepo;
 	
 	@Override
 	public List<Manufacturer> listAll() {
-		return Mre.findAll();
+		return Mrepo.findAll();
 	}
 
 	@Override
 	public void save (Manufacturer Manufacturer) {
-		Mre.save(Manufacturer);
+		Mrepo.save(Manufacturer);
 	}
 
 	@Override
 	public void delete(Integer id) {
-		Mre.deleteById(id);
+		Mrepo.deleteById(id);
 	}
 
 	@Override
 	public Manufacturer getManufacturerbyID(Integer id) {
-		return Mre.findById(id).get();
+		return Mrepo.findById(id).get();
 	}
 
 }
