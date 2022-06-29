@@ -5,13 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.project.tgdd_be.entities.Manufacturer;
 import com.project.tgdd_be.repositories.ManufacturerRepository;
-import com.project.tgdd_be.service.ManufacturerSevice;
+import com.project.tgdd_be.service.ManufacturerService;
 
 @Service
-
-public class ManufacturerSeviceImp implements ManufacturerSevice {
+public class ManufacturerServiceImp implements ManufacturerService {
 	@Autowired
-	 private ManufacturerRepository Mrepo;
+	private ManufacturerRepository Mrepo;
 	
 	@Override
 	public List<Manufacturer> listAll() {
@@ -19,7 +18,7 @@ public class ManufacturerSeviceImp implements ManufacturerSevice {
 	}
 
 	@Override
-	public void save (Manufacturer Manufacturer) {
+	public void save(Manufacturer Manufacturer) {
 		Mrepo.save(Manufacturer);
 	}
 

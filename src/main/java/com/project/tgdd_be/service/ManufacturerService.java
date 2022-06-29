@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.project.tgdd_be.entities.Manufacturer;
 
-public interface ManufacturerSevice {
+public interface ManufacturerService {
 	
 	public List<Manufacturer> listAll();
 	
