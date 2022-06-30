@@ -35,4 +35,9 @@ public class ProductServiceImp implements ProductService {
 		return repo.findById(id).get();
 	}
 
+	@Override
+	public List<Product> searchProducts(String query) {	
+		return repo.searchProductSQL(query);
+	}
+
 }

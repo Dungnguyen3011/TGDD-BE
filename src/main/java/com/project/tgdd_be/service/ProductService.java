@@ -14,6 +14,6 @@ public interface ProductService {
 
 	public Product getProductbyID(Integer id);
 	
-	
+	public List<Product> searchProducts(String query);
 }
 	

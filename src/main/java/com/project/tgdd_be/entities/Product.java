@@ -30,6 +30,9 @@ public class Product {
 	@Column(name="unit_price")
 	private Float unitPrice;
 	
+	@Column(name="sale_price")
+	private Float salePrice;
+	
 	@Column(name="description")
 	private String description;
 	
