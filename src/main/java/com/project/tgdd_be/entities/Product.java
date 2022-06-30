@@ -24,10 +24,10 @@ public class Product {
 	@Column(name="quantity")
 	private Integer quantity;
 	
-	@Column(name="mannufacturer")
-	private String manufacturer;
+	@Column(name="manufacturer_id")
+	private Integer manufacturerId;
 	
-	@Column(name="unitPrice")
+	@Column(name="unit_price")
 	private Float unitPrice;
 	
 	@Column(name="description")
@@ -38,6 +38,9 @@ public class Product {
 	
 	@Column(name="category_id")
 	private Integer categoryId;
+	
+	@Column(name="store_id")
+	private Integer storeId;
 	
 	@Column(name="status")
 	private Boolean status;
