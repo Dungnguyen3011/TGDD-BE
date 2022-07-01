@@ -40,4 +40,14 @@ public class ProductServiceImp implements ProductService {
 		return repo.searchProductSQL(query);
 	}
 
+	@Override
+	public List<Product> listAllForCus() {
+		return repo.listProductForCus();
+	}
+
+	@Override
+	public List<Product> listProductFindByLocation(Integer id) {
+		return repo.listProductByLocation(id);
+	}
+
 }

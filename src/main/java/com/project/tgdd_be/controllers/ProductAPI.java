@@ -12,7 +12,7 @@ import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.service.ProductService;
 
 @RestController
-public class homeController {
+public class ProductAPI {
 
 	@Autowired
 	private ProductService sv;
@@ -32,5 +32,17 @@ public class homeController {
 	@GetMapping("/search")
 	public ResponseEntity<?> searchProducts(@RequestParam("query") String query){
 		return ResponseEntity.ok(sv.searchProducts(query));
+	}
+	
+	@GetMapping("/api/productForCus")
+	public ResponseEntity<?> getAllForCus(){
+		List<Product> pr= sv.listAllForCus();
+		return ResponseEntity.ok(pr);
+	}
+	
+	@GetMapping("/api/productByLocation")
+	public ResponseEntity<?> getProductFindByLocation(@RequestParam("id") Integer id){
+		List<Product> pr= sv.listProductFindByLocation(id);
+		return ResponseEntity.ok(pr);
 	}
 }

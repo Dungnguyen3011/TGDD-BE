@@ -15,5 +15,9 @@ public interface ProductService {
 	public Product getProductbyID(Integer id);
 	
 	public List<Product> searchProducts(String query);
+	
+	public List<Product> listAllForCus();
+	
+	public List<Product> listProductFindByLocation(Integer id);
 }
 	
