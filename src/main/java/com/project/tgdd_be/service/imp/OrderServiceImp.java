@@ -35,6 +35,11 @@ public class OrderServiceImp implements OrderService {
 	public List<Order> listOrderBySpecificPhone(String phone_number) {
 		return orderRepository.listOrderBySpecificPhone(phone_number);
 	}
+
+	@Override
+	public Order updateOrderStatus(Boolean status) {
+		return orderRepository.updateOrderStatus();
+	}
 	
 
 }

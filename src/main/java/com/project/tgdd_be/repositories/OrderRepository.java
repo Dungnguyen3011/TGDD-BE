@@ -16,5 +16,5 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 	@Query(value = "UPDATE tbl_order o FROM tbl_order o"
 			+ "SET o.status = 'FALSE' "
 			+ "WHERE o.status" , nativeQuery = true)
-	List<Order> updateStatusOrder();
+	Order updateOrderStatus();
 }
