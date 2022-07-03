@@ -14,4 +14,5 @@ public interface OrderService {
 
 	public Order getOrderById(Integer id);
 	
+	public List<Order> listOrderBySpecificPhone(String phone_number);
 }

@@ -30,6 +30,11 @@ public class OrderServiceImp implements OrderService {
 	public Order getOrderById(Integer id) {
 		return orderRepository.findById(id).get();
 	}
+
+	@Override
+	public List<Order> listOrderBySpecificPhone(String phone_number) {
+		return orderRepository.listOrderBySpecificPhone(phone_number);
+	}
 	
 
 }

@@ -1,9 +1,20 @@
 package com.project.tgdd_be.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.project.tgdd_be.entities.Order;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
+	@Query(value = "SELECT * FROM tbl_order o WHERE "
+			+ " o.phone_number LIKE CONCAT('%',:query,'%')", nativeQuery = true)
+	List<Order> listOrderBySpecificPhone(@Param("phone_number") String phone_number);
 
+	@Query(value = "UPDATE tbl_order o FROM tbl_order o"
+			+ "SET o.status = 'FALSE' "
+			+ "WHERE o.status" , nativeQuery = true)
+	List<Order> updateStatusOrder();
 }
