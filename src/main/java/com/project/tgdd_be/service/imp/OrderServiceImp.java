@@ -16,10 +16,7 @@ public class OrderServiceImp implements OrderService {
 		return orderRepository.findAll();
 	}
 
-	@Override
-	public void save(Order order) {
-		orderRepository.save(order);
-	}
+	
 
 	@Override
 	public void delete(Integer id) {
@@ -36,9 +33,17 @@ public class OrderServiceImp implements OrderService {
 		return orderRepository.listOrderBySpecificPhone(phone_number);
 	}
 
+	
+
 	@Override
-	public Order updateOrderStatus(Boolean status) {
-		return orderRepository.updateOrderStatus();
+	public Order save(Order order) {
+		// TODO Auto-generated method stub
+		return orderRepository.save(order);
+	}
+
+	@Override
+	public Order updateOrderStatus(Order order) {
+		return orderRepository.save(order);
 	}
 	
 
