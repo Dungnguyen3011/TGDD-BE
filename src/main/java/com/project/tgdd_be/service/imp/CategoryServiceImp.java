@@ -3,11 +3,13 @@ package com.project.tgdd_be.service.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.project.tgdd_be.entities.Category;
 import com.project.tgdd_be.repositories.CategoryRepository;
 import com.project.tgdd_be.service.CategoryService;
 
+@Service
 public class CategoryServiceImp implements CategoryService{
 	@Autowired
 	private CategoryRepository categoryRep;
