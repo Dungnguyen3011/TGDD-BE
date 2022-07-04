@@ -29,17 +29,17 @@ public class Order {
 	private String address;
 	
 	@Column(name="phone_number")
-	private String phone;
+	private String phoneNumber;
 	
 	@Column(name="email")
 	private String email;
 	
 	@Column(name="shipping_type")
-	private String shipping;
+	private String shippingType;
 	
 	@Column(name="total_price")
 	private Float total;
 	
-	@Column(name="status")
-	private Boolean status;
+	@Column(name="shipping_status")
+	private Boolean Shippingstatus;
 }
