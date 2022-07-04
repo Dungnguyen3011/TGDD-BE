@@ -26,10 +26,6 @@ public class Store {
 	private String locationId;
 
 	
-	@Column(name="store_name")
-	private String storeName;
-
-	
 	@Column(name = "status")
 	private boolean status;
 }

@@ -21,6 +21,4 @@ public class Location {
     @Column(name="location_name")
 	private String locationName;
     
-    @Column(name="store_id")
-	private Integer storeId;
 }
