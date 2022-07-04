@@ -16,4 +16,6 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 			+ "SET o.status = 'FALSE' "
 			+ "WHERE o.status" , nativeQuery = true)
 	Order updateOrderStatus();
+	
+	public Order findByPhone(String phone);
 }
