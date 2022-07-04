@@ -21,5 +21,6 @@ public class Store {
 	@Column(name="store_name")
 	private String StoreName;
 	
-
+	@Column(name="status")
+	private Boolean status;
 }
