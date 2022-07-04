@@ -3,11 +3,13 @@ package com.project.tgdd_be.service.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.project.tgdd_be.entities.Category;
 import com.project.tgdd_be.repositories.CategoryRepository;
 import com.project.tgdd_be.service.CategoryService;
 
+@Service
 public class CategoryServiceImp implements CategoryService{
 	@Autowired
 	private CategoryRepository categoryRep;
@@ -18,8 +20,8 @@ public class CategoryServiceImp implements CategoryService{
 	}
 	
 	@Override
-	public void save(Category cat) {
-		categoryRep.save(cat);
+	public Category save(Category cat) {
+		return categoryRep.save(cat);
 	}
 	
 	@Override
@@ -30,5 +32,15 @@ public class CategoryServiceImp implements CategoryService{
 	@Override
 	public Category getCategorByID(Integer id) {
 		return categoryRep.findById(id).get();	
+	}
+	
+	@Override
+	public List<Category> listAllForCus(){
+		return categoryRep.listCateForCus();
+	}
+	
+	@Override
+	public List<Category> deleteCategory(){
+		return categoryRep.deleteCategory();
 	}
 }
