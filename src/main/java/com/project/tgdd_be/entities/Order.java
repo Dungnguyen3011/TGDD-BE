@@ -40,6 +40,6 @@ public class Order {
 	@Column(name="total_price")
 	private Float total;
 	
-	@Column(name="status")
-	private Boolean status;
+	@Column(name="shipping_status")
+	private Boolean shippingStatus;
 }
