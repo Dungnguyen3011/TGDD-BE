@@ -9,18 +9,21 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-@Table(name="tbl_store")
+@Table(name = "tbl_store")
 @Entity
 @Data
 public class Store {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="store_id", nullable = false, updatable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "store_id", nullable = false, updatable = false)
 	private Integer storeId;
-	
-	@Column(name="store_name")
+
+	@Column(name = "store_name")
 	private String StoreName;
+
+	@Column(name = "location_id")
+	private String locationId;
 	
-	@Column(name="status")
-	private Boolean status;
+	@Column(name = "status")
+	private boolean status;
 }
