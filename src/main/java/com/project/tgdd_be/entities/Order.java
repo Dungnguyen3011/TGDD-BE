@@ -41,5 +41,7 @@ public class Order {
 	private Float total;
 	
 	@Column(name="shipping_status")
-	private Boolean Shippingstatus;
+	private Boolean shippingStatus;
+
+
 }
