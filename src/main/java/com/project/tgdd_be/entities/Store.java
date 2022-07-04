@@ -23,8 +23,8 @@ public class Store {
 	private String StoreName;
 
 	@Column(name = "location_id")
-	private String locationId;
+	private Integer locationId;
 
 	@Column(name = "status")
-	private boolean status;
+	private Boolean status;
 }
