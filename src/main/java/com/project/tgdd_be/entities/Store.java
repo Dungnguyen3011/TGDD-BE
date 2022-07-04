@@ -24,7 +24,7 @@ public class Store {
 
 	@Column(name = "location_id")
 	private String locationId;
-	
+
 	@Column(name = "status")
 	private boolean status;
 }
