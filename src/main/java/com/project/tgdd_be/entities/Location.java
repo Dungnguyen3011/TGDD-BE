@@ -19,8 +19,8 @@ public class Location {
 	private Integer locationId;
 	
     @Column(name="location_name")
-	private String location_name;
+	private String locationName;
     
     @Column(name="store_id")
-	private Integer store_id;
+	private Integer storeId;
 }

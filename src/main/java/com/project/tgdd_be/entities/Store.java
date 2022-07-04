@@ -18,11 +18,17 @@ public class Store {
 	@Column(name = "store_id", nullable = false, updatable = false)
 	private Integer storeId;
 
+
 	@Column(name = "store_name")
 	private String StoreName;
 
 	@Column(name = "location_id")
 	private String locationId;
+
+	
+	@Column(name="store_name")
+	private String storeName;
+
 	
 	@Column(name = "status")
 	private boolean status;
