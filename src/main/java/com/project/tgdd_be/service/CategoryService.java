@@ -8,9 +8,13 @@ public interface CategoryService {
 
 	public List<Category> listAll();
 
-	public void save(Category cat);
+	public Category save(Category cat);
 
 	public void delete(Integer id);
 
 	public Category getCategorByID(Integer id);
+	
+	public List<Category> listAllForCus();
+	
+	public List<Category> deleteCategory();
 }
