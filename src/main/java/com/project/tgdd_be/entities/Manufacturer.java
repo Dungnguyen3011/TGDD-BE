@@ -21,5 +21,6 @@ public class Manufacturer {
     @Column(name="manufacturer_name")
 	private String manufacturerName;
 	
-    
+    @Column(name="status")
+	private Boolean status;
 }
