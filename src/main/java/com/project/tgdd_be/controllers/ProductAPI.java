@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,8 +37,8 @@ public class ProductAPI {
 		return sv.save(product);
 	}
 	
-	@GetMapping("/search")
-	public ResponseEntity<?> searchProducts(@RequestParam("query") String query){
+	@GetMapping("/search/{query}")
+	public ResponseEntity<?> searchProducts(@PathVariable String query){
 		return ResponseEntity.ok(sv.searchProducts(query));
 	}
 	
@@ -46,9 +48,29 @@ public class ProductAPI {
 		return ResponseEntity.ok(pr);
 	}
 	
-	@GetMapping("/api/productByLocation")
-	public ResponseEntity<?> getProductFindByLocation(@RequestParam("id") Integer id){
+	@GetMapping("/api/productByLocation/{id}")
+	public ResponseEntity<?> getProductFindByLocation(@PathVariable Integer id){
 		List<Product> pr= sv.listProductFindByLocation(id);
 		return ResponseEntity.ok(pr);
+	}
+	
+	@GetMapping("/search/{id}")
+	public ResponseEntity<?> updateProduct(@PathVariable Integer id, @RequestBody Product product){
+		Product updateProudct = sv.getProductbyID(id);
+		updateProudct.setProductName(product.getProductName());
+		updateProudct.setQuantity(product.getQuantity());
+		updateProudct.setManufacturerId(product.getManufacturerId());
+		updateProudct.setUnitPrice(product.getUnitPrice());
+		updateProudct.setSalePrice(product.getSalePrice());
+		updateProudct.setDescription(product.getDescription());
+		updateProudct.setRate(product.getRate());
+		updateProudct.setCategoryId(product.getCategoryId());
+		updateProudct.setStoreId(product.getStoreId());
+		updateProudct.setImage(product.getImage());
+		updateProudct.setStatus(product.getStatus());
+		
+		sv.save(updateProudct);
+		
+		return ResponseEntity.ok(updateProudct);
 	}
 }
