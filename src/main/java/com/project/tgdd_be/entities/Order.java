@@ -38,7 +38,7 @@ public class Order {
 	private String shippingType;
 	
 	@Column(name="total_price")
-	private Float total;
+	private Float totalPrice;
 	
 	@Column(name="shipping_status")
 	private Boolean shippingStatus;
