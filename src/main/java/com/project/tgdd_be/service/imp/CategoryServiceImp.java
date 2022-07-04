@@ -18,8 +18,8 @@ public class CategoryServiceImp implements CategoryService{
 	}
 	
 	@Override
-	public void save(Category cat) {
-		categoryRep.save(cat);
+	public Category save(Category cat) {
+		return categoryRep.save(cat);
 	}
 	
 	@Override
@@ -30,5 +30,15 @@ public class CategoryServiceImp implements CategoryService{
 	@Override
 	public Category getCategorByID(Integer id) {
 		return categoryRep.findById(id).get();	
+	}
+	
+	@Override
+	public List<Category> listAllForCus(){
+		return categoryRep.listCateForCus();
+	}
+	
+	@Override
+	public List<Category> deleteCategory(){
+		return categoryRep.deleteCategory();
 	}
 }
