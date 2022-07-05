@@ -8,9 +8,11 @@ public interface ManufacturerService {
 	
 	public List<Manufacturer> listAll();
 	
-	public void save(Manufacturer Manufacturer);
+	public Manufacturer save(Manufacturer Manufacturer);
 	
 	public void delete(Integer id);
-
+	
 	public Manufacturer getManufacturerbyID(Integer id);
+	public List<Manufacturer> listManufacturerForCus();
+	public void updateMStatus(Integer[] ids);
 }

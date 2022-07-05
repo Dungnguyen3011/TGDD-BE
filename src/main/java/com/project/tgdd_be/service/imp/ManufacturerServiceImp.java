@@ -18,8 +18,8 @@ public class ManufacturerServiceImp implements ManufacturerService {
 	}
 
 	@Override
-	public void save(Manufacturer Manufacturer) {
-		Mrepo.save(Manufacturer);
+	public Manufacturer save(Manufacturer Manufacturer) {
+		return Mrepo.save(Manufacturer);
 	}
 
 	@Override
@@ -30,6 +30,18 @@ public class ManufacturerServiceImp implements ManufacturerService {
 	@Override
 	public Manufacturer getManufacturerbyID(Integer id) {
 		return Mrepo.findById(id).get();
+	}
+
+	@Override
+	public List<Manufacturer> listManufacturerForCus() {
+		
+		return Mrepo.listManufacturerForCus();
+	}
+
+	@Override
+	public void updateMStatus(Integer[] ids) {
+		
+		
 	}
 
 }

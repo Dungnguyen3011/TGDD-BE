@@ -46,7 +46,7 @@ public class OrderServiceImp implements OrderService {
 
 	@Override
 	public Order updateShipping_status(Order order) {
-		order.setStatus(true);
+		order.setShippingStatus(true);
 		return orderRepository.save(order);
 	}
 

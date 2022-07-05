@@ -8,10 +8,12 @@ public interface StoreService {
 
 	public List<Store> listAll();
 
-	public void save(Store sto);
+	public Store save(Store sto);
 
 	public void delete(Integer id);
 
 	public Store getStorebyID(Integer id);
+
+	public List<Store> listStoreFindByLocation(Integer id);
 
 }

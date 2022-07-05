@@ -1,10 +1,15 @@
 package com.project.tgdd_be.entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -23,5 +28,8 @@ public class Category {
 	
 	@Column(name="status")
 	private Boolean status;
+	
+	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+	private Set<Product> products;
 
 }

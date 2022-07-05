@@ -1,11 +1,13 @@
 package com.project.tgdd_be.entities;
 import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -29,17 +31,20 @@ public class Order {
 	private String address;
 	
 	@Column(name="phone_number")
-	private String phone;
+	private String phoneNumber;
 	
 	@Column(name="email")
 	private String email;
 	
 	@Column(name="shipping_type")
-	private String shipping;
+	private String shippingType;
 	
 	@Column(name="total_price")
-	private Float total;
+	private Float totalPrice;
 	
-	@Column(name="status")
-	private Boolean status;
+	@Column(name="shipping_status")
+	private Boolean shippingStatus;
+
+	@ManyToMany(mappedBy = "boughtOrders")
+	private Set<Product> products;
 }
