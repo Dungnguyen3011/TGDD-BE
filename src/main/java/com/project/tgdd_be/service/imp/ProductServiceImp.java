@@ -40,19 +40,25 @@ public class ProductServiceImp implements ProductService {
 	}
 
 	@Override
-	public List<Product> searchProducts(String query) {	
-		return repo.searchProductSQL(query);
+	public List<ProductDTO> searchProducts(String query) {	
+		List<ProductDTO> listdto = new ArrayList<>();		
+		List<Product> list = repo.searchProduct(query);
+		
+		for(Product item: list) {	
+			listdto.add(ProductMapper.toProductDTO(item));
+		}
+		return listdto;
 	}
 
 	@Override
 	public List<ProductDTO> listAllForCus() {
-		List<ProductDTO> list2 = new ArrayList<>();		
+		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.listProductForCus();
 		
 		for(Product item: list) {	
-			list2.add(ProductMapper.toProductDTO(item));
+			listdto.add(ProductMapper.toProductDTO(item));
 		}
-		return list2;
+		return listdto;
 	}
 
 	@Override
@@ -62,13 +68,13 @@ public class ProductServiceImp implements ProductService {
 
 	@Override
 	public List<ProductDTO> listAllDTO() {
-		List<ProductDTO> list2 = new ArrayList<>();		
+		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.findAll();
 		
 		for(Product item: list) {	
-			list2.add(ProductMapper.toProductDTO(item));
+			listdto.add(ProductMapper.toProductDTO(item));
 		}
-		return list2;
+		return listdto;
 	}
 
 }
