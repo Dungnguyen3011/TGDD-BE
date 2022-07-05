@@ -29,18 +29,18 @@ public class OrderAPI {
 	}
 
 	@GetMapping("/api/orderBySpecificPhone/{phone}")
-	public ResponseEntity<?> getOrderBySpecificPhone(@PathVariable(name = "phone_number") String phone) {
-		Optional<Order> opOrder = Optional.of(os.getOrderByPhone(phone));
+	public ResponseEntity<?> getOrderBySpecificPhone(@PathVariable(name = "phone_number") String phoneNumber) {
+		Optional<Order> opOrder = Optional.of(os.getOrderByPhoneNumber(phoneNumber));
 		return opOrder.map(order -> new ResponseEntity<>(order, HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
-	@PutMapping("/api/updateShipping_status/{id}")
-	public ResponseEntity<?> updateShipping_status(@PathVariable(name = "order_id") Integer id, @RequestBody Order order) {
+	@PutMapping("/api/updateShippingStatus/{id}")
+	public ResponseEntity<?> updateShippingStatus(@PathVariable(name = "order_id") Integer id, @RequestBody Order order) {
 		Optional<Order> opOrder = Optional.of(os.getOrderById(id));
 		return opOrder.map(order1 -> {
 			order.setOrderId(order1.getOrderId());
-			return new ResponseEntity<>(os.updateShipping_status(order), HttpStatus.OK);
+			return new ResponseEntity<>(os.updateShippingStatus(order), HttpStatus.OK);
 		}).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 }

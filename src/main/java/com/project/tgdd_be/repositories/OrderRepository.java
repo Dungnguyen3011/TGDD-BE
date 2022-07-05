@@ -17,5 +17,5 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 			+ "WHERE o.status" , nativeQuery = true)
 	Order updateOrderStatus();
 	
-	public Order findByPhone(String phone);
+	public Order findByPhoneNumber(String phoneNumber);
 }

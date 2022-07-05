@@ -39,15 +39,19 @@ public class OrderServiceImp implements OrderService {
 		return orderRepository.save(order);
 	}
 
+
+
 	@Override
-	public Order getOrderByPhone(String phone) {
-		return orderRepository.findByPhone(phone);
+	public Order updateShippingStatus(Order order) {
+		order.setShippingStatus(true);
+		return orderRepository.save(order);		
 	}
 
 	@Override
-	public Order updateShipping_status(Order order) {
-		order.setShippingStatus(true);
-		return orderRepository.save(order);
+	public Order getOrderByPhoneNumber(String phoneNumber) {
+		return orderRepository.findByPhoneNumber(phoneNumber);
 	}
+
+	
 
 }
