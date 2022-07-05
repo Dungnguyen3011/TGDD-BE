@@ -1,11 +1,17 @@
 package com.project.tgdd_be.service.imp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.tgdd_be.entities.Category;
+import com.project.tgdd_be.entities.Product;
+import com.project.tgdd_be.model.dto.CategoryDTO;
+import com.project.tgdd_be.model.dto.ProductDTO;
+import com.project.tgdd_be.model.mapper.CategoryMapper;
+import com.project.tgdd_be.model.mapper.ProductMapper;
 import com.project.tgdd_be.repositories.CategoryRepository;
 import com.project.tgdd_be.service.CategoryService;
 
@@ -35,8 +41,25 @@ public class CategoryServiceImp implements CategoryService{
 	}
 	
 	@Override
-	public List<Category> listAllForCus(){
-		return categoryRep.listCateForCus();
+	public List<CategoryDTO> listAllForCus(){
+		List<CategoryDTO> listdto = new ArrayList<>();		
+		List<Category> list = categoryRep.listCateForCus();
+		
+		for(Category item: list) {	
+			listdto.add(CategoryMapper.ToCategoryDTO(item));
+		}
+		return listdto;
+	}
+	
+	@Override
+	public List<CategoryDTO> listAllDTO(){
+		List<CategoryDTO> listdto = new ArrayList<>();		
+		List<Category> list = categoryRep.listCateForCus();
+		
+		for(Category item: list) {	
+			listdto.add(CategoryMapper.ToCategoryDTO(item));
+		}
+		return listdto;
 	}
 	
 	@Override
