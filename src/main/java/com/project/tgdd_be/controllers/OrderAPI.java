@@ -13,15 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.tgdd_be.entities.Order;
-import com.project.tgdd_be.repositories.OrderRepository;
 import com.project.tgdd_be.service.OrderService;
 
 @RestController
 public class OrderAPI {
+	
 	@Autowired
 	private OrderService os;
-	@Autowired
-	private OrderRepository or;
 
 	@GetMapping("/api/order")
 	public ResponseEntity<?> getAll() {
@@ -29,19 +27,20 @@ public class OrderAPI {
 		return ResponseEntity.ok(lo);
 
 	}
+
 	@GetMapping("/api/orderBySpecificPhone/{phone}")
-	public ResponseEntity<?> getOrderBySpecificPhone(@PathVariable(name="phone_number") String phone){
-		Optional<Order> opOrder = Optional.of(or.findByPhoneNumber(phone));
-		return opOrder.map(order -> new ResponseEntity<>(order,HttpStatus.OK))
+	public ResponseEntity<?> getOrderBySpecificPhone(@PathVariable(name = "phone_number") String phone) {
+		Optional<Order> opOrder = Optional.of(os.getOrderByPhone(phone));
+		return opOrder.map(order -> new ResponseEntity<>(order, HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
-	@PutMapping("/api/updateOrderStatus/{id}")
-	public ResponseEntity<?> updateOrderStatus(@PathVariable(name="order_id")Integer id, @RequestBody Order order) {
-		Optional<Order> opOrder = or.findById(id);
-		
+
+	@PutMapping("/api/updateShipping_status/{id}")
+	public ResponseEntity<?> updateShipping_status(@PathVariable(name = "order_id") Integer id, @RequestBody Order order) {
+		Optional<Order> opOrder = Optional.of(os.getOrderById(id));
 		return opOrder.map(order1 -> {
 			order.setOrderId(order1.getOrderId());
-			return new ResponseEntity<>(or.updateOrderStatus(),HttpStatus.OK);
-		}).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND)); 
+			return new ResponseEntity<>(os.updateShipping_status(order), HttpStatus.OK);
+		}).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 }
