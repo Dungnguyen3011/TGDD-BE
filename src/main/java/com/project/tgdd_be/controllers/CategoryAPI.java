@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.tgdd_be.entities.Category;
+import com.project.tgdd_be.model.dto.CategoryDTO;
 import com.project.tgdd_be.service.CategoryService;
 
 @RestController
@@ -20,13 +21,13 @@ public class CategoryAPI {
 	
 	@GetMapping("/api/category")
 	public ResponseEntity<?> getAll(){
-		List<Category> cate= cs.listAll();
+		List<CategoryDTO> cate= cs.listAllDTO();
 		return ResponseEntity.ok(cate);
 	}
 	
 	@GetMapping("/api/categoryForcus")
 	public ResponseEntity<?> getAllForCus(){
-		List<Category> cate= cs.listAllForCus();
+		List<CategoryDTO> cate= cs.listAllForCus();
 		return ResponseEntity.ok(cate);
 	}
 	
