@@ -31,7 +31,7 @@ public class OrderAPI {
 	}
 	@GetMapping("/api/orderBySpecificPhone/{phone}")
 	public ResponseEntity<?> getOrderBySpecificPhone(@PathVariable(name="phone_number") String phone){
-		Optional<Order> opOrder = Optional.of(or.findByPhone(phone));
+		Optional<Order> opOrder = Optional.of(or.findByPhoneNumber(phone));
 		return opOrder.map(order -> new ResponseEntity<>(order,HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}

@@ -59,13 +59,13 @@ public class ProductAPI {
 		Product updateProudct = sv.getProductbyID(id);
 		updateProudct.setProductName(product.getProductName());
 		updateProudct.setQuantity(product.getQuantity());
-		updateProudct.setManufacturerId(product.getManufacturerId());
+		//updateProudct.setManufacturerId(product.getManufacturerId());
 		updateProudct.setUnitPrice(product.getUnitPrice());
 		updateProudct.setSalePrice(product.getSalePrice());
 		updateProudct.setDescription(product.getDescription());
 		updateProudct.setRate(product.getRate());
-		updateProudct.setCategoryId(product.getCategoryId());
-		updateProudct.setStoreId(product.getStoreId());
+		//updateProudct.setCategory(product.getCategory());
+		//updateProudct.setStoreId(product.getStoreId());
 		updateProudct.setImage(product.getImage());
 		updateProudct.setStatus(product.getStatus());
 		

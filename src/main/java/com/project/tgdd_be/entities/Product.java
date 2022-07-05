@@ -1,10 +1,18 @@
 package com.project.tgdd_be.entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -24,9 +32,6 @@ public class Product  {
 	@Column(name="quantity")
 	private Integer quantity;
 	
-	@Column(name="manufacturer_id")
-	private Integer manufacturerId;
-	
 	@Column(name="unit_price")
 	private Float unitPrice;
 	
@@ -39,15 +44,33 @@ public class Product  {
 	@Column(name="rate")
 	private Integer rate;
 	
-	@Column(name="category_id")
-	private Integer categoryId;
-	
-	@Column(name="store_id")
-	private Integer storeId;
-	
 	@Column(name="status")
 	private Boolean status;
 	
 	@Column(name="image")
 	private String image;
+	
+	@ManyToOne
+	@JoinColumn(name = "categoryId")
+	private Category category;
+	
+	@ManyToOne
+	@JoinColumn(name = "manufacturerId")
+	private Manufacturer manufacturer;
+	
+	@ManyToOne
+	@JoinColumn(name = "storeId")
+	private Store store;
+	
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "tbl_order_details",
+            joinColumns = {
+                @JoinColumn(name = "product_id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "order_id")}
+    )
+    private Set<Order> boughtOrders;
+	
+	
 }

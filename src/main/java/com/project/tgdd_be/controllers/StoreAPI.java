@@ -42,7 +42,7 @@ public class StoreAPI {
 	public ResponseEntity<?> updateStore(@PathVariable(name = "store_id") Integer id, @RequestBody Store store) {
 		Store newStore = stv.getStorebyID(id);
 		newStore.setStoreName(store.getStoreName());
-		newStore.setLocationId(store.getLocationId());
+		//newStore.setLocationId(store.getLocationId());
 		stv.save(newStore);
 		return ResponseEntity.ok(newStore);
 	}

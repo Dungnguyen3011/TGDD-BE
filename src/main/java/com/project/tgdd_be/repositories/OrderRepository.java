@@ -9,7 +9,7 @@ import com.project.tgdd_be.entities.Order;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 	@Query(value = "SELECT o FROM Order o WHERE "
-			+ " o.phone LIKE CONCAT('%',:query,'%')")
+			+ " o.phoneNumber LIKE CONCAT('%',:query,'%')")
 	List<Order> listOrderBySpecificPhone(String query);
 	
 	@Query(value = "UPDATE tbl_order o FROM tbl_order o"
@@ -17,5 +17,5 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 			+ "WHERE o.status" , nativeQuery = true)
 	Order updateOrderStatus();
 	
-	public Order findByPhone(String phone);
+	public Order findByPhoneNumber(String phone);
 }
