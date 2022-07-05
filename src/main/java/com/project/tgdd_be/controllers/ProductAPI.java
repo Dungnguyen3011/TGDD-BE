@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.tgdd_be.entities.Product;
+import com.project.tgdd_be.model.dto.ProductDTO;
 import com.project.tgdd_be.service.ProductService;
 
 @RestController
@@ -28,7 +29,7 @@ public class ProductAPI {
 	
 	@GetMapping("/api/product")
 	public ResponseEntity<?> getAll(){
-		List<Product> pr= sv.listAll();
+		List<ProductDTO> pr= sv.listAllDTO();
 		return ResponseEntity.ok(pr);
 	}
 	
@@ -44,7 +45,7 @@ public class ProductAPI {
 	
 	@GetMapping("/api/productForCus")
 	public ResponseEntity<?> getAllForCus(){
-		List<Product> pr= sv.listAllForCus();
+		List<ProductDTO> pr= sv.listAllForCus();
 		return ResponseEntity.ok(pr);
 	}
 	

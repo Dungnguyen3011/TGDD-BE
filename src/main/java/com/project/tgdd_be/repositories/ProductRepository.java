@@ -21,8 +21,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 			"OR p.description LIKE CONCAT('%',:query, '%') ", nativeQuery = true) 
 	List<Product> searchProductSQL(String query);
 	
-	@Query(value ="SELECT * FROM tbl_product p WHERE "+
-			"p.status = 'TRUE' ", nativeQuery = true)
+	@Query(value ="SELECT p FROM Product p WHERE "+
+			"p.status = 'true' ")
 	List<Product> listProductForCus();
 	
 	@Query(value ="SELECT * FROM tbl_product p INNER JOIN tbl_store s ON "+
