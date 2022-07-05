@@ -15,9 +15,9 @@ public class ProductMapper {
 		tmp.setRate(product.getRate());
 		tmp.setStatus(product.getStatus());
 		tmp.setImage(product.getImage());
-		tmp.setCategoryName(product.getCategory().getCategoryName());
-		tmp.setManufacturerName(product.getManufacturer().getManufacturerName());
-		tmp.setStoreName(product.getStore().getStoreName());
+		tmp.setCategoryId(product.getCategory().getCategoryId());
+		tmp.setManufacturerId(product.getManufacturer().getManufacturerId());
+		tmp.setStoreId(product.getStore().getStoreId());
 		
 		return tmp;
 	}

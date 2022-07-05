@@ -28,9 +28,9 @@ public class ProductDTO {
 	
 	private String image;
 	
-	private String categoryName;
+	private Integer categoryId;
 	
-	private String manufacturerName;
+	private Integer manufacturerId;
 	
-	private String storeName;
+	private Integer storeId;
 }

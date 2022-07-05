@@ -26,7 +26,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 			"p.status = 'true' ")
 	List<Product> listProductForCus();
 	
-	@Query(value ="SELECT * FROM tbl_product p INNER JOIN tbl_store s ON "+
-			" p.store_id= s.store_id AND s.location_id= :id AND p.status = 'TRUE'", nativeQuery = true)
+	@Query(value ="SELECT p FROM Product p WHERE p.store.location.locationId = :id")
 	List<Product> listProductByLocation(@Param("id") Integer id);
 }

@@ -2,6 +2,7 @@ package com.project.tgdd_be.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,21 +22,19 @@ public class ProductAPI {
 	@Autowired
 	private ProductService sv;
 	
-//	@GetMapping("/api/product")
-//	public List<Product> getAll(){
-//		List<Product> pr= sv.listAll();
-//		return pr;
-//	}
 	
 	@GetMapping("/api/product")
 	public ResponseEntity<?> getAll(){
-		List<ProductDTO> pr= sv.listAllDTO();
+		List<ProductDTO> pr= sv.listAll();
 		return ResponseEntity.ok(pr);
 	}
 	
+	//not working method
 	@PostMapping("/api/product")
-	public Product createProduct(Product product) {
-		return sv.save(product);
+	public Product createProduct(@RequestBody ProductDTO product) {
+		Product pr = new Product();
+		BeanUtils.copyProperties(product, pr);
+		return sv.save(pr);
 	}
 	
 	@GetMapping("/search/{query}")
@@ -51,27 +50,27 @@ public class ProductAPI {
 	
 	@GetMapping("/api/productByLocation/{id}")
 	public ResponseEntity<?> getProductFindByLocation(@PathVariable Integer id){
-		List<Product> pr= sv.listProductFindByLocation(id);
+		List<ProductDTO> pr= sv.listProductFindByLocation(id);
 		return ResponseEntity.ok(pr);
 	}
 	
-	@PutMapping("/search/{id}")
-	public ResponseEntity<?> updateProduct(@PathVariable Integer id, @RequestBody Product product){
-		Product updateProudct = sv.getProductbyID(id);
-		updateProudct.setProductName(product.getProductName());
-		updateProudct.setQuantity(product.getQuantity());
-		//updateProudct.setManufacturerId(product.getManufacturerId());
-		updateProudct.setUnitPrice(product.getUnitPrice());
-		updateProudct.setSalePrice(product.getSalePrice());
-		updateProudct.setDescription(product.getDescription());
-		updateProudct.setRate(product.getRate());
-		//updateProudct.setCategory(product.getCategory());
-		//updateProudct.setStoreId(product.getStoreId());
-		updateProudct.setImage(product.getImage());
-		updateProudct.setStatus(product.getStatus());
-		
-		sv.save(updateProudct);
-		
-		return ResponseEntity.ok(updateProudct);
-	}
+//	@PutMapping("/search/{id}")
+//	public ResponseEntity<?> updateProduct(@PathVariable Integer id, @RequestBody Product product){
+//		Product updateProudct = sv.getProductbyID(id);
+//		updateProudct.setProductName(product.getProductName());
+//		updateProudct.setQuantity(product.getQuantity());
+//		updateProudct.setManufacturerId(product.getManufacturerId());
+//		updateProudct.setUnitPrice(product.getUnitPrice());
+//		updateProudct.setSalePrice(product.getSalePrice());
+//		updateProudct.setDescription(product.getDescription());
+//		updateProudct.setRate(product.getRate());
+//		updateProudct.setCategory(product.getCategory());
+//		updateProudct.setStoreId(product.getStoreId());
+//		updateProudct.setImage(product.getImage());
+//		updateProudct.setStatus(product.getStatus());
+//		
+//		sv.save(updateProudct);
+//		
+//		return ResponseEntity.ok(updateProudct);
+//	}
 }
