@@ -14,7 +14,9 @@ public interface OrderService {
 
 	public Order getOrderById(Integer id);
 	
+	public Order getOrderByPhone(String phone);
+	
 	public List<Order> listOrderBySpecificPhone(String query);
 	
-	public Order updateOrderStatus(Order order);
+	public Order updateShipping_status(Order order);
 }
