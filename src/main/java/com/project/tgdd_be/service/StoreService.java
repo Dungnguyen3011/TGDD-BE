@@ -13,8 +13,10 @@ public interface StoreService {
 
 	public void delete(Integer id);
 
-	public StoreDTO getStorebyID(Integer id);
+	public StoreDTO getStoreDTObyID(Integer id);
 
 	public List<StoreDTO> listStoreFindByLocation(Integer id);
+	
+	public Store getStorebyID(Integer id);
 
 }

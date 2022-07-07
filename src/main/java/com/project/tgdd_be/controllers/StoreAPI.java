@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.tgdd_be.entities.Store;
+import com.project.tgdd_be.model.dto.StoreDTO;
 import com.project.tgdd_be.service.StoreService;
 
 @RestController
@@ -23,7 +24,7 @@ public class StoreAPI {
 
 	@GetMapping("/api/store")
 	public ResponseEntity<?> getAll() {
-		List<Store> sto = stv.listAll();
+		List<StoreDTO> sto = stv.listAll();
 		return ResponseEntity.ok(sto);
 	}
 
@@ -34,18 +35,18 @@ public class StoreAPI {
 
 	@GetMapping("/api/storeByLocation/{id}")
 	public ResponseEntity<?> getStoreFindByLocation(@PathVariable Integer id) {
-		List<Store> st = stv.listStoreFindByLocation(id);
+		List<StoreDTO> st = stv.listStoreFindByLocation(id);
 		return ResponseEntity.ok(st);
 	}
 
-	@PutMapping("api/updateStore/{id}")
-	public ResponseEntity<?> updateStore(@PathVariable(name = "store_id") Integer id, @RequestBody Store store) {
-		Store newStore = stv.getStorebyID(id);
-		newStore.setStoreName(store.getStoreName());
-		//newStore.setLocationId(store.getLocationId());
-		stv.save(newStore);
-		return ResponseEntity.ok(newStore);
-	}
+//	@PutMapping("api/updateStore/{id}")
+//	public ResponseEntity<?> updateStore(@PathVariable(name = "store_id") Integer id, @RequestBody Store store) {
+//		Store newStore = stv.getStorebyID(id);
+//		newStore.setStoreName(store.getStoreName());
+//		//newStore.setLocationId(store.getLocationId());
+//		stv.save(newStore);
+//		return ResponseEntity.ok(newStore);
+//	}
 	
 
 }
