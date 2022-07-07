@@ -13,4 +13,7 @@ public interface LocationService {
 	public void delete(Integer id);
 
 	public Location getLocationbyID(Integer id);
+	
+	
+	
 }

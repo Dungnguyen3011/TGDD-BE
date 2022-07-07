@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.project.tgdd_be.repositories.StoreRepository;
 import com.project.tgdd_be.service.StoreService;
 import com.project.tgdd_be.entities.Store;
-import com.project.tgdd_be.model.dto.ProductDTO;
 import com.project.tgdd_be.model.dto.StoreDTO;
 import com.project.tgdd_be.model.mapper.StoreMapper;
 
@@ -40,7 +39,7 @@ public class StoreServiceImp implements StoreService {
 	}
 
 	@Override
-	public StoreDTO getStorebyID(Integer id) {
+	public StoreDTO getStoreDTObyID(Integer id) {
 		return StoreMapper.toStoreDTO(storeRep.findById(id).get());
 	}
 
@@ -53,5 +52,11 @@ public class StoreServiceImp implements StoreService {
 			listDTO.add(StoreMapper.toStoreDTO(item));
 		}
 		return listDTO;
+	}
+
+	@Override
+	public Store getStorebyID(Integer id) {
+		return storeRep.findById(id).get();
+		
 	}
 }

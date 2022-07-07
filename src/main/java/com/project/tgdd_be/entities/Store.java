@@ -27,19 +27,30 @@ public class Store {
 	@Column(name = "store_id", nullable = false, updatable = false)
 	private Integer storeId;
 
-
 	@Column(name = "store_name")
 	private String storeName;
 
 	@Column(name = "status")
 	private Boolean status;
-	
+
 	@JsonManagedReference
 	@OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
 	private Set<Product> products;
-	
+
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name = "locationId")
 	private Location location;
+
+	public Store(Integer storeId, String storeName, boolean status, Location location) {
+		super();
+		this.storeId = storeId;
+		this.storeName = storeName;
+		this.status = status;
+		this.location = location;
+	}
+
+	public Store() {
+		super();
+	}
 }
