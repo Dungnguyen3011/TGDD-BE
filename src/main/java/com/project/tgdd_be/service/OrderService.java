@@ -9,7 +9,7 @@ public interface OrderService {
 	
 	public List<OrderDTO> listAll();
 
-	public OrderDTO saveDTO(OrderDTO orderDTO);
+	public Order save(Order order);
 
 	public void delete(Integer id);
 

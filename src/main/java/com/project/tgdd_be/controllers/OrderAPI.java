@@ -29,13 +29,14 @@ public class OrderAPI {
 
 	}
 
-	@GetMapping("/api/getOrderBySpecificPhone/{phoneNumber}")
-	public ResponseEntity<?> getOrderBySpecificPhone(@PathVariable(name = "phone_number") String phoneNumber) {
-		Optional<OrderDTO> opOrder = Optional.of(os.getOrderByPhoneNumber(phoneNumber));
-		return opOrder.map(order -> new ResponseEntity<>(order, HttpStatus.OK))
-				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-	}
-
+	/*
+	 * @GetMapping("/api/getOrderBySpecificPhone/{phoneNumber}") public
+	 * ResponseEntity<?> getOrderBySpecificPhone(@PathVariable(name =
+	 * "phone_number") String phoneNumber) { Optional<OrderDTO> opOrder =
+	 * Optional.of(os.getOrderByPhoneNumber(phoneNumber)); return opOrder.map(order
+	 * -> new ResponseEntity<>(order, HttpStatus.OK)) .orElseGet(() -> new
+	 * ResponseEntity<>(HttpStatus.NOT_FOUND)); }
+	 */
 	@GetMapping("/api/listOrderBySpecificPhone/{query}")
 	public ResponseEntity<?> getListOrderBySpecificPhone(@PathVariable String query) {
 		return ResponseEntity.ok(os.listOrderBySpecificPhone(query));
@@ -43,10 +44,18 @@ public class OrderAPI {
 
 	@PutMapping("/api/updateShippingStatus/{id}")
 	public ResponseEntity<?> updateShippingStatus(@PathVariable Integer id, @RequestBody Order order) {
+
 		Optional<Order> opOrder = Optional.of(os.getOrderById(id));
 		return opOrder.map(order1 -> {
-			order.setOrderId(order1.getOrderId());
-			return new ResponseEntity<>(os.updateShippingStatus(id, order), HttpStatus.OK);
+			order.setShippingStatus(order1.getShippingStatus());
+			return new ResponseEntity<>(os.save(order), HttpStatus.OK);
 		}).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
+		/*
+		 * Order updateOrder = os.getOrderById(id); order.setShippingStatus(false);
+		 * updateOrder.setShippingStatus(order.getShippingStatus());
+		 * os.save(updateOrder); return ResponseEntity.ok(updateOrder);
+		 */
 	}
+
 }
