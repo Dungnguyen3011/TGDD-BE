@@ -31,16 +31,19 @@ public class CategoryAPI {
 		return ResponseEntity.ok(cate);
 	}
 	
+	//not working
 	@PostMapping("/api/category")
 	public Category createCategory(Category cate) {
 		return cs.save(cate);
 	}
 	
+	//not working
 	@PutMapping("/api/category")
 	public Category updateCategory(Category cate) {
 		return cs.save(cate);
 	}
 	
+	//not working
 	@PutMapping("/api/categoryDelete")
 	public ResponseEntity<?> deleteCategory(){
 		List<Category> cate= cs.deleteCategory();

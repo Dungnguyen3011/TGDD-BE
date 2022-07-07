@@ -14,34 +14,40 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.tgdd_be.entities.Manufacturer;
-import com.project.tgdd_be.entities.Product;
-import com.project.tgdd_be.model.dto.ManufaturerDTO;
+import com.project.tgdd_be.model.dto.ManufacturerDTO;
 import com.project.tgdd_be.repositories.ManufacturerRepository;
 import com.project.tgdd_be.service.ManufacturerService;
 @RestController
 public class ManufacturerAPI {
 	@Autowired
 	private ManufacturerService mv;
+	public Manufacturer dtotoManufacturer(ManufacturerDTO manufacturerDTO) {
+		Manufacturer manufacturer = new Manufacturer(manufacturerDTO.getManufacturerId(), manufacturerDTO.getManufacturerName(), manufacturerDTO.getStatus());
+		return manufacturer;
+	}
 	//chay duoc roi
 	@GetMapping("/api/manufacturer")
 	public ResponseEntity<?> getAll(){
-		List<ManufaturerDTO> m= mv.listAll();
+		List<ManufacturerDTO> m= mv.listAll();
 		return ResponseEntity.ok(m);
 	}
-	// chua lam code cu
+	
 	@PostMapping("/api/manufacturer")
-	public Manufacturer createManufacturer(Manufacturer manufacturer) {
-		return mv.save(manufacturer);
+	public Manufacturer createManufacturer(@RequestBody ManufacturerDTO manufacturerDTO) {
+		Manufacturer mn =  dtotoManufacturer(manufacturerDTO);
+		return mv.save(mn);
+		
 	}
 	
 	// chay duoc roi
 	@GetMapping("/api/manufacturerForCus")
 	public ResponseEntity<?> getAllForCus(){
-		List<ManufaturerDTO> m= mv.listManufacturerForCus();
+		List<ManufacturerDTO> m= mv.listManufacturerForCus();
 		return ResponseEntity.ok(m);
 		
 	}

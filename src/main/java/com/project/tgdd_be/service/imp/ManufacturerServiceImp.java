@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.project.tgdd_be.entities.Manufacturer;
-import com.project.tgdd_be.model.dto.ManufaturerDTO;
+import com.project.tgdd_be.model.dto.ManufacturerDTO;
 import com.project.tgdd_be.model.mapper.ManufacturerMapper;
 import com.project.tgdd_be.repositories.ManufacturerRepository;
 import com.project.tgdd_be.service.ManufacturerService;
@@ -16,8 +16,8 @@ public class ManufacturerServiceImp implements ManufacturerService {
 	private ManufacturerRepository Mrepo;
 	
 	@Override
-	public List<ManufaturerDTO> listAll() {
-		List<ManufaturerDTO> listdto = new ArrayList<>();		
+	public List<ManufacturerDTO> listAll() {
+		List<ManufacturerDTO> listdto = new ArrayList<>();		
 		List<Manufacturer> list = Mrepo.findAll();
 		
 		for(Manufacturer item: list) {	
@@ -37,15 +37,15 @@ public class ManufacturerServiceImp implements ManufacturerService {
 	}
 
 	@Override
-	public ManufaturerDTO getManufacturerbyID(Integer id) {
+	public ManufacturerDTO getManufacturerbyID(Integer id) {
 		//return repo.findById(id).get();
 		return ManufacturerMapper.toManufaturerDTO(Mrepo.findById(id).get());
 	}
 
 
 	@Override
-	public List<ManufaturerDTO> listManufacturerForCus() {
-		List<ManufaturerDTO> listdto = new ArrayList<>();		
+	public List<ManufacturerDTO> listManufacturerForCus() {
+		List<ManufacturerDTO> listdto = new ArrayList<>();		
 		List<Manufacturer> list = Mrepo.listManufacturerForCus();
 		
 		for(Manufacturer item: list) {	
@@ -60,8 +60,11 @@ public class ManufacturerServiceImp implements ManufacturerService {
 		
 	}
 
+
+
 	@Override
 	public Manufacturer getManufacturerbyID2(Integer id) {
+		// TODO Auto-generated method stub
 		return Mrepo.findById(id).get();
 	}
 

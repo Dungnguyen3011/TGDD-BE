@@ -33,4 +33,14 @@ public class Manufacturer {
     @JsonManagedReference
     @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
 	private Set<Product> products;
+    
+	public Manufacturer(Integer integer, String manufacturerName, Boolean status) {
+		super();
+		this.manufacturerId = integer;
+		this.manufacturerName = manufacturerName;
+		this.status = status;
+	}
+	public Manufacturer() {
+		super();
+	}
 }
