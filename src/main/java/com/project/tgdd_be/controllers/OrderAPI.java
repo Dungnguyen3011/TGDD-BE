@@ -43,10 +43,10 @@ public class OrderAPI {
 
 	@PutMapping("/api/updateShippingStatus/{id}")
 	public ResponseEntity<?> updateShippingStatus(@PathVariable Integer id, @RequestBody Order order) {
-		Optional<OrderDTO> opOrder = Optional.of(os.getOrderById(id));
+		Optional<Order> opOrder = Optional.of(os.getOrderById(id));
 		return opOrder.map(order1 -> {
 			order.setOrderId(order1.getOrderId());
-			return new ResponseEntity<>(os.updateShippingStatus(order), HttpStatus.OK);
+			return new ResponseEntity<>(os.updateShippingStatus(id, order), HttpStatus.OK);
 		}).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 }

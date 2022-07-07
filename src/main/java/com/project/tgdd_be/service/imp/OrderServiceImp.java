@@ -1,7 +1,6 @@
 package com.project.tgdd_be.service.imp;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +33,9 @@ public class OrderServiceImp implements OrderService {
 	}
 
 	@Override
-	public OrderDTO getOrderById(Integer id) {
+	public Order getOrderById(Integer id) {
 		/* return orderRepository.findById(id).get(); */
-		return OrderMapper.toOrderDTO(orderRepository.findById(id).get());
+		return orderRepository.findById(id).get();
 	}
 
 	@Override
@@ -50,10 +49,10 @@ public class OrderServiceImp implements OrderService {
 		return listOrderDTO;
 	}
 
-	@Override
-	public Order save(Order order) {
-		return orderRepository.save(order);
-	}
+	/*
+	 * @Override public Order save(Order order) { return
+	 * orderRepository.save(order); }
+	 */
 	
 	public OrderDTO getID(Integer id) {
 		/* return orderRepository.findById(id).get(); */
@@ -61,8 +60,16 @@ public class OrderServiceImp implements OrderService {
 	}
 
 	@Override
-	public OrderDTO updateShippingStatus(Order order) {
-		return OrderMapper.toOrderDTO(orderRepository.updateOrderStatus());		
+	public Order updateShippingStatus(Integer id,Order order) {
+		
+		if (orderRepository.findById(id).isPresent()) {
+			Order existOrder = orderRepository.findById(id).get();
+			order.setShippingStatus(false);
+			Order updateOrder = orderRepository.save(existOrder);
+			return updateOrder;
+		}else {
+			return null;
+		}
 	}
 
 	@Override
@@ -70,6 +77,12 @@ public class OrderServiceImp implements OrderService {
 		return OrderMapper.toOrderDTO(orderRepository.findByPhoneNumber(phoneNumber));
 	}
 
+	@Override
+	public OrderDTO saveDTO(OrderDTO orderDTO) {
+		Order order = new Order();
+		orderDTO = OrderMapper.toOrderDTO(orderRepository.save(order));
+		return orderDTO;
+	}
 	
 
 }

@@ -9,15 +9,15 @@ public interface OrderService {
 	
 	public List<OrderDTO> listAll();
 
-	public Order save(Order order);
+	public OrderDTO saveDTO(OrderDTO orderDTO);
 
 	public void delete(Integer id);
 
-	public OrderDTO getOrderById(Integer id);
+	public Order getOrderById(Integer id);
 	
 	public OrderDTO getOrderByPhoneNumber(String phoneNumber);
 		
 	public List<OrderDTO> listOrderBySpecificPhone(String query);
 	
-	public OrderDTO updateShippingStatus(Order order);
+	public Order updateShippingStatus(Integer id, Order order);
 }
