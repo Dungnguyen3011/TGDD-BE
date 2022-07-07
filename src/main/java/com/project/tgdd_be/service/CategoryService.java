@@ -13,10 +13,10 @@ public interface CategoryService {
 	public Category save(Category cat);
 
 	public void delete(Integer id);
+	
+	public CategoryDTO getCategoryDTOByID(Integer id);
 
 	public Category getCategorByID(Integer id);
 	
 	public List<CategoryDTO> listAllForCus();
-	
-	public List<Category> deleteCategory();
 }
