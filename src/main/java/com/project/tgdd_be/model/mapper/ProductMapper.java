@@ -18,7 +18,6 @@ public class ProductMapper {
 		tmp.setCategoryId(product.getCategory().getCategoryId());
 		tmp.setManufacturerId(product.getManufacturer().getManufacturerId());
 		tmp.setStoreId(product.getStore().getStoreId());
-		
 		return tmp;
 	}
 }
