@@ -40,9 +40,19 @@ public class Category {
 		this.categoryName = categoryName;
 		this.status = status;
 	}
+	
+	
 
 	public Category() {
 		super();
+	}
+
+
+
+	public Category(Integer categoryId, Boolean status) {
+		super();
+		this.categoryId = categoryId;
+		this.status = status;
 	}
 	
 	
