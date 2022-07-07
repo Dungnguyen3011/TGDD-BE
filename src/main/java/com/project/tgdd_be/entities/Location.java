@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 
 @Table(name="tbl_location")
@@ -26,5 +28,6 @@ public class Location {
 	private String locationName;
     
     @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
+    @JsonManagedReference
 	private Set<Store> stores;
 }

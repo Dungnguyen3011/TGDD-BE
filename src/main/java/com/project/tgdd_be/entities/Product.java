@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 @Table(name="tbl_product")
@@ -51,14 +53,17 @@ public class Product  {
 	private String image;
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "categoryId")
 	private Category category;
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "manufacturerId")
 	private Manufacturer manufacturer;
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "storeId")
 	private Store store;
 	
@@ -71,6 +76,28 @@ public class Product  {
                 @JoinColumn(name = "order_id")}
     )
     private Set<Order> boughtOrders;
+
+	public Product(String productId, String productName, Integer quantity, Float unitPrice, Float salePrice,
+			String description, Integer rate, Boolean status, String image, Category category,
+			Manufacturer manufacturer, Store store) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.quantity = quantity;
+		this.unitPrice = unitPrice;
+		this.salePrice = salePrice;
+		this.description = description;
+		this.rate = rate;
+		this.status = status;
+		this.image = image;
+		this.category = category;
+		this.manufacturer = manufacturer;
+		this.store = store;
+	}
+
+	public Product() {
+		super();
+	}
 	
 	
 }

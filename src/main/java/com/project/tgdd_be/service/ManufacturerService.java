@@ -14,6 +14,10 @@ public interface ManufacturerService {
 	public void delete(Integer id);
 	
 	public ManufaturerDTO getManufacturerbyID(Integer id);
+	
+	public Manufacturer getManufacturerbyID2(Integer id);
+	
 	public List<ManufaturerDTO> listManufacturerForCus();
+	
 	public void updateMStatus(Integer[] ids);
 }

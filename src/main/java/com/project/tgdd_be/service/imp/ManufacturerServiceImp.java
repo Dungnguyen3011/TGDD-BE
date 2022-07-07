@@ -60,4 +60,9 @@ public class ManufacturerServiceImp implements ManufacturerService {
 		
 	}
 
+	@Override
+	public Manufacturer getManufacturerbyID2(Integer id) {
+		return Mrepo.findById(id).get();
+	}
+
 }
