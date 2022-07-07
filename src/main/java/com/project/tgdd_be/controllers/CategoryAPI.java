@@ -41,7 +41,7 @@ public class CategoryAPI {
 		return cs.save(cate);
 	}
 	
-	@GetMapping("/api/categoryDelete")
+	@PutMapping("/api/categoryDelete")
 	public ResponseEntity<?> deleteCategory(){
 		List<Category> cate= cs.deleteCategory();
 		return ResponseEntity.ok(cate);
