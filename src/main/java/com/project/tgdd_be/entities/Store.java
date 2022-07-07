@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 
 @Table(name = "tbl_store")
@@ -31,10 +34,12 @@ public class Store {
 	@Column(name = "status")
 	private Boolean status;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
 	private Set<Product> products;
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "locationId")
 	private Location location;
 }

@@ -13,34 +13,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.tgdd_be.entities.Order;
+import com.project.tgdd_be.model.dto.OrderDTO;
 import com.project.tgdd_be.service.OrderService;
 
 @RestController
 public class OrderAPI {
-	
+
 	@Autowired
 	private OrderService os;
 
 	@GetMapping("/api/order")
 	public ResponseEntity<?> getAll() {
-		List<Order> lo = os.listAll();
+		List<OrderDTO> lo = os.listAll();
 		return ResponseEntity.ok(lo);
 
 	}
 
-	@GetMapping("/api/orderBySpecificPhone/{phone}")
+	@GetMapping("/api/getOrderBySpecificPhone/{phoneNumber}")
 	public ResponseEntity<?> getOrderBySpecificPhone(@PathVariable(name = "phone_number") String phoneNumber) {
-		Optional<Order> opOrder = Optional.of(os.getOrderByPhoneNumber(phoneNumber));
+		Optional<OrderDTO> opOrder = Optional.of(os.getOrderByPhoneNumber(phoneNumber));
 		return opOrder.map(order -> new ResponseEntity<>(order, HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
+	@GetMapping("/api/listOrderBySpecificPhone/{query}")
+	public ResponseEntity<?> getListOrderBySpecificPhone(@PathVariable String query) {
+		return ResponseEntity.ok(os.listOrderBySpecificPhone(query));
+	}
+
 	@PutMapping("/api/updateShippingStatus/{id}")
-	public ResponseEntity<?> updateShippingStatus(@PathVariable(name = "order_id") Integer id, @RequestBody Order order) {
+	public ResponseEntity<?> updateShippingStatus(@PathVariable Integer id, @RequestBody Order order) {
 		Optional<Order> opOrder = Optional.of(os.getOrderById(id));
 		return opOrder.map(order1 -> {
 			order.setOrderId(order1.getOrderId());
-			return new ResponseEntity<>(os.updateShippingStatus(order), HttpStatus.OK);
+			return new ResponseEntity<>(os.updateShippingStatus(id, order), HttpStatus.OK);
 		}).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 }

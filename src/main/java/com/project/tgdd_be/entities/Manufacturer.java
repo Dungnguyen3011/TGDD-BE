@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 @Table(name="tbl_manufacturer")
 @Entity
@@ -28,6 +30,7 @@ public class Manufacturer {
     @Column(name="status")
 	private Boolean status;
     
+    @JsonManagedReference
     @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
 	private Set<Product> products;
 }

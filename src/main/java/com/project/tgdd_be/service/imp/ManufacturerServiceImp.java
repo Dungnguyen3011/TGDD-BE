@@ -1,9 +1,12 @@
 package com.project.tgdd_be.service.imp;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.project.tgdd_be.entities.Manufacturer;
+import com.project.tgdd_be.model.dto.ManufaturerDTO;
+import com.project.tgdd_be.model.mapper.ManufacturerMapper;
 import com.project.tgdd_be.repositories.ManufacturerRepository;
 import com.project.tgdd_be.service.ManufacturerService;
 
@@ -13,8 +16,14 @@ public class ManufacturerServiceImp implements ManufacturerService {
 	private ManufacturerRepository Mrepo;
 	
 	@Override
-	public List<Manufacturer> listAll() {
-		return Mrepo.findAll();
+	public List<ManufaturerDTO> listAll() {
+		List<ManufaturerDTO> listdto = new ArrayList<>();		
+		List<Manufacturer> list = Mrepo.findAll();
+		
+		for(Manufacturer item: list) {	
+			listdto.add(ManufacturerMapper.toManufaturerDTO(item));
+		}
+		return listdto;
 	}
 
 	@Override
@@ -28,20 +37,32 @@ public class ManufacturerServiceImp implements ManufacturerService {
 	}
 
 	@Override
-	public Manufacturer getManufacturerbyID(Integer id) {
-		return Mrepo.findById(id).get();
+	public ManufaturerDTO getManufacturerbyID(Integer id) {
+		//return repo.findById(id).get();
+		return ManufacturerMapper.toManufaturerDTO(Mrepo.findById(id).get());
 	}
 
+
 	@Override
-	public List<Manufacturer> listManufacturerForCus() {
+	public List<ManufaturerDTO> listManufacturerForCus() {
+		List<ManufaturerDTO> listdto = new ArrayList<>();		
+		List<Manufacturer> list = Mrepo.listManufacturerForCus();
 		
-		return Mrepo.listManufacturerForCus();
+		for(Manufacturer item: list) {	
+			listdto.add(ManufacturerMapper.toManufaturerDTO(item));
+		}
+		return listdto;
 	}
 
 	@Override
 	public void updateMStatus(Integer[] ids) {
 		
 		
+	}
+
+	@Override
+	public Manufacturer getManufacturerbyID2(Integer id) {
+		return Mrepo.findById(id).get();
 	}
 
 }
