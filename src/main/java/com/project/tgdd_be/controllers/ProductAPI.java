@@ -51,7 +51,6 @@ public class ProductAPI {
 		return ResponseEntity.ok(pr);
 	}
 	
-	//not working method
 	@PostMapping("/api/product")
 	public ResponseEntity<?> createProduct(@RequestBody ProductDTO product) {
 		Product pr = dtotoProduct(product);
@@ -75,7 +74,7 @@ public class ProductAPI {
 		return ResponseEntity.ok(pr);
 	}
 	
-	@PutMapping("/search/{id}")
+	@PutMapping("/api/product/{id}")
 	public ResponseEntity<?> updateProduct(@PathVariable Integer id, @RequestBody ProductDTO product){
 		if(sv.getProductbyID(id) != null) {
 			Product pr = dtotoProduct(product);
