@@ -12,9 +12,9 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 			+ " o.phoneNumber LIKE CONCAT('%',:query,'%')")
 	List<Order> listOrderBySpecificPhone(String query);
 	
-	@Query(value = "UPDATE tbl_order o FROM tbl_order o"
+	@Query(value = "UPDATE o FROM Order o"
 			+ "SET o.status = 'FALSE' "
-			+ "WHERE o.status" , nativeQuery = true)
+			+ "WHERE o.status")
 	Order updateOrderStatus();
 	
 	public Order findByPhoneNumber(String phoneNumber);
