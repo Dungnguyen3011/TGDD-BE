@@ -8,11 +8,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ManufaturerDTO {
+public class ManufacturerDTO {
 		
 		private Integer manufacturerId;
 		
 		private String manufacturerName;
 		
-		private boolean status;
+		private Boolean status;
 }
