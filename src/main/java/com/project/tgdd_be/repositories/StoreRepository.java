@@ -11,7 +11,7 @@ import com.project.tgdd_be.entities.Store;
 
 public interface StoreRepository extends JpaRepository<Store, Integer> {
 	@Query(value = "select s from Store s where  "
-			+ "s.locationId = :id and s.status = 'TRUE'")
+			+ "s.location.locationId = :id and s.status = 'TRUE'")
 	List<Store> listStoreByLocation(@Param("id") Integer id);
 	
 	@Query(value = "UPDATE tbl_store s FROM tbl_store s"
