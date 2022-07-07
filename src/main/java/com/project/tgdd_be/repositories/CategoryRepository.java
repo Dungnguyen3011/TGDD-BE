@@ -10,13 +10,8 @@ import com.project.tgdd_be.entities.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 	
-	@Query(value ="SELECT * FROM tbl_categories p WHERE "+
-			"p.status = 'TRUE' ", nativeQuery = true)
+	@Query(value ="SELECT p FROM Category p WHERE "+
+			"p.status = 'TRUE' ")
 	List<Category> listCateForCus();
-	
-	@Query(value ="UPDATE tbl_store s FROM tbl_store"
-			+ "SET s.status = 'FALSE' "
-			+ "WHERE s.status", nativeQuery = true)
-	List<Category> deleteCategory();
 
 }
