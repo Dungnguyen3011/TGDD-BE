@@ -13,7 +13,9 @@ public interface ProductService {
 	
 	public void delete(Integer id);
 
-	public ProductDTO getProductbyID(Integer id);
+	public ProductDTO getProductDtobyID(Integer id);
+	
+	public Product getProductbyID(Integer id);
 	
 	public List<ProductDTO> searchProducts(String query);
 	

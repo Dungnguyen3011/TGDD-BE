@@ -41,7 +41,7 @@ public class ProductServiceImp implements ProductService {
 	}
 
 	@Override
-	public ProductDTO getProductbyID(Integer id) {
+	public ProductDTO getProductDtobyID(Integer id) {
 		//return repo.findById(id).get();
 		return ProductMapper.toProductDTO(repo.findById(id).get());
 	}
@@ -77,6 +77,11 @@ public class ProductServiceImp implements ProductService {
 			listdto.add(ProductMapper.toProductDTO(item));
 		}
 		return listdto;
+	}
+
+	@Override
+	public Product getProductbyID(Integer id) {	
+		return repo.findById(id).get();
 	}
 
 
