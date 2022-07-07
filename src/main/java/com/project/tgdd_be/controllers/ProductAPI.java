@@ -53,9 +53,9 @@ public class ProductAPI {
 	
 	//not working method
 	@PostMapping("/api/product")
-	public Product createProduct(@RequestBody ProductDTO product) {
+	public ResponseEntity<?> createProduct(@RequestBody ProductDTO product) {
 		Product pr = dtotoProduct(product);
-		return sv.save(pr);
+		return ResponseEntity.ok(sv.save(pr));
 	}
 		
 	@GetMapping("/search/{query}")
@@ -75,23 +75,13 @@ public class ProductAPI {
 		return ResponseEntity.ok(pr);
 	}
 	
-//	@PutMapping("/search/{id}")
-//	public ResponseEntity<?> updateProduct(@PathVariable Integer id, @RequestBody Product product){
-//		Product updateProudct = sv.getProductbyID(id);
-//		updateProudct.setProductName(product.getProductName());
-//		updateProudct.setQuantity(product.getQuantity());
-//		updateProudct.setManufacturerId(product.getManufacturerId());
-//		updateProudct.setUnitPrice(product.getUnitPrice());
-//		updateProudct.setSalePrice(product.getSalePrice());
-//		updateProudct.setDescription(product.getDescription());
-//		updateProudct.setRate(product.getRate());
-//		updateProudct.setCategory(product.getCategory());
-//		updateProudct.setStoreId(product.getStoreId());
-//		updateProudct.setImage(product.getImage());
-//		updateProudct.setStatus(product.getStatus());
-//		
-//		sv.save(updateProudct);
-//		
-//		return ResponseEntity.ok(updateProudct);
-//	}
+	@PutMapping("/search/{id}")
+	public ResponseEntity<?> updateProduct(@PathVariable Integer id, @RequestBody ProductDTO product){
+		if(sv.getProductbyID(id) != null) {
+			Product pr = dtotoProduct(product);
+			return ResponseEntity.ok(sv.save(pr));
+		}
+		return null;
+		
+	}
 }
