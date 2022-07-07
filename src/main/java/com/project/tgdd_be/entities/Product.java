@@ -26,7 +26,7 @@ public class Product  {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="product_id", nullable = false, updatable = false)
-	private String productId;
+	private Integer productId;
 	
 	@Column(name="product_name")
 	private String productName;
@@ -77,7 +77,7 @@ public class Product  {
     )
     private Set<Order> boughtOrders;
 
-	public Product(String productId, String productName, Integer quantity, Float unitPrice, Float salePrice,
+	public Product(Integer productId, String productName, Integer quantity, Float unitPrice, Float salePrice,
 			String description, Integer rate, Boolean status, String image, Category category,
 			Manufacturer manufacturer, Store store) {
 		super();
