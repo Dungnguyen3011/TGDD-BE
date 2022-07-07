@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.tgdd_be.entities.Manufacturer;
+import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.model.dto.ManufacturerDTO;
+import com.project.tgdd_be.model.dto.ProductDTO;
 import com.project.tgdd_be.repositories.ManufacturerRepository;
 import com.project.tgdd_be.service.ManufacturerService;
 @RestController
@@ -51,9 +53,16 @@ public class ManufacturerAPI {
 		return ResponseEntity.ok(m);
 		
 	}
-	//ham delete/ update status=false dang bi sai
-	@PutMapping("/api/manufacturer")
-	public void updateMStatus(@RequestParam("ids[]") Integer[] ids){}
+	// chay duoc roi
+	@PutMapping("/api/updatemanufacturer/{id}")
+	public ResponseEntity<?> updateManufacturer(@PathVariable Integer id, @RequestBody ManufacturerDTO manufacturer){
+		if(mv.getManufacturerbyID(id) != null) {
+			Manufacturer pr = dtotoManufacturer(manufacturer);
+			return ResponseEntity.ok(mv.save(pr));
+		}
+		return null;
+		
+	}
 }
 
 
