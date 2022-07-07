@@ -1,5 +1,6 @@
 package com.project.tgdd_be.model.dto;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
 
@@ -14,7 +15,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDTO {
+public class OrderDTO implements Serializable{
 	private Integer orderId;
 
 	private String customerName;
@@ -33,5 +34,5 @@ public class OrderDTO {
 
 	private Boolean shippingStatus;
 
-	private Set<Product> products;
+	
 }
