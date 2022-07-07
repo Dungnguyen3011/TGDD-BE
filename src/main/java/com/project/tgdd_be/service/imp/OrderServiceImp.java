@@ -77,4 +77,10 @@ public class OrderServiceImp implements OrderService {
 		return OrderMapper.toOrderDTO(orderRepository.findByPhoneNumber(phoneNumber));
 	}
 
+	@Override
+	public OrderDTO getOrderDTOById(Integer id) {
+		return OrderMapper.toOrderDTO(orderRepository.findById(id).get());
+	}
+
+
 }

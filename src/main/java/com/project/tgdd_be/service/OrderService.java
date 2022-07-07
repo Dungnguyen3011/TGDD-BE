@@ -20,4 +20,7 @@ public interface OrderService {
 	public List<OrderDTO> listOrderBySpecificPhone(String query);
 	
 	public Order updateShippingStatus(Integer id, Order order);
+	
+	public OrderDTO getOrderDTOById(Integer id);
+		
 }

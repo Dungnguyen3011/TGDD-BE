@@ -42,20 +42,24 @@ public class OrderAPI {
 		return ResponseEntity.ok(os.listOrderBySpecificPhone(query));
 	}
 
+//not work 
+	/*
+	 * @PutMapping("/api/updateShippingStatus/{id}") public ResponseEntity<?>
+	 * updateShippingStatus(@PathVariable Integer id, @RequestBody Order order) {
+	 * 
+	 * Optional<Order> opOrder = Optional.of(os.getOrderById(id)); return
+	 * opOrder.map(order1 -> { order.setShippingStatus(order1.getShippingStatus());
+	 * return new ResponseEntity<>(os.save(order), HttpStatus.OK); }).orElseGet(()
+	 * -> new ResponseEntity<>(HttpStatus.NOT_FOUND)); }
+	 */
+// working with infinite loop (500)
 	@PutMapping("/api/updateShippingStatus/{id}")
-	public ResponseEntity<?> updateShippingStatus(@PathVariable Integer id, @RequestBody Order order) {
-
-		Optional<Order> opOrder = Optional.of(os.getOrderById(id));
-		return opOrder.map(order1 -> {
-			order.setShippingStatus(order1.getShippingStatus());
-			return new ResponseEntity<>(os.save(order), HttpStatus.OK);
-		}).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-
-		/*
-		 * Order updateOrder = os.getOrderById(id); order.setShippingStatus(false);
-		 * updateOrder.setShippingStatus(order.getShippingStatus());
-		 * os.save(updateOrder); return ResponseEntity.ok(updateOrder);
-		 */
+	public ResponseEntity<?> updateShippingStatus(@PathVariable Integer id, @RequestBody OrderDTO orderDTO) {
+		Order updateOrder = os.getOrderById(id);
+		orderDTO.setShippingStatus(false);
+		updateOrder.setShippingStatus(orderDTO.getShippingStatus());
+		os.save(updateOrder);
+		return ResponseEntity.ok(updateOrder);
 	}
 
 }
