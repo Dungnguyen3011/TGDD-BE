@@ -34,4 +34,17 @@ public class Category {
 	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
 	private Set<Product> products;
 
+	public Category(Integer categoryId, String categoryName, Boolean status) {
+		super();
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
+		this.status = status;
+	}
+
+	public Category() {
+		super();
+	}
+	
+	
+
 }
