@@ -14,7 +14,7 @@ public class OrderMapper {
 		dto.setShippingType(order.getShippingType());
 		dto.setTotalPrice(order.getTotalPrice());
 		dto.setOrderDate(order.getOrderDate());
-		dto.setShippingType(order.getShippingType());
+		dto.setShippingStatus(order.getShippingStatus());
 		return dto;
 	}
 }

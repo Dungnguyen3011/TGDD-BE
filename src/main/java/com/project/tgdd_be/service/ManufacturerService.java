@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.project.tgdd_be.entities.Manufacturer;
 import com.project.tgdd_be.model.dto.ManufacturerDTO;
+import com.project.tgdd_be.model.dto.ProductDTO;
 
 public interface ManufacturerService {
 	
@@ -13,7 +14,9 @@ public interface ManufacturerService {
 	
 	public void delete(Integer id);
 	
-	public ManufacturerDTO getManufacturerbyID(Integer id);
+	public Manufacturer getManufacturerbyID(Integer id);
+	
+	public ManufacturerDTO getManufacturerDtobyID(Integer id);
 	
 	public Manufacturer getManufacturerbyID2(Integer id);
 	

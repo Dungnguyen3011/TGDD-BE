@@ -36,11 +36,7 @@ public class ManufacturerServiceImp implements ManufacturerService {
 		Mrepo.deleteById(id);
 	}
 
-	@Override
-	public ManufacturerDTO getManufacturerbyID(Integer id) {
-		//return repo.findById(id).get();
-		return ManufacturerMapper.toManufaturerDTO(Mrepo.findById(id).get());
-	}
+
 
 
 	@Override
@@ -67,5 +63,18 @@ public class ManufacturerServiceImp implements ManufacturerService {
 		// TODO Auto-generated method stub
 		return Mrepo.findById(id).get();
 	}
+
+	@Override
+	public Manufacturer getManufacturerbyID(Integer id) {
+		// TODO Auto-generated method stub
+		return Mrepo.findById(id).get();
+	}
+
+	@Override
+	public ManufacturerDTO getManufacturerDtobyID(Integer id) {
+		// TODO Auto-generated method stub
+		return ManufacturerMapper.toManufaturerDTO(Mrepo.findById(id).get());
+	}
+
 
 }
