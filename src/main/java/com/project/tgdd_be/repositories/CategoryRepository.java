@@ -14,7 +14,7 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
 			"p.status = 'TRUE' ", nativeQuery = true)
 	List<Category> listCateForCus();
 	
-	@Query(value ="UPDATE tbl_store s FROM tbl_store s"
+	@Query(value ="UPDATE tbl_store s FROM tbl_store"
 			+ "SET s.status = 'FALSE' "
 			+ "WHERE s.status", nativeQuery = true)
 	List<Category> deleteCategory();
