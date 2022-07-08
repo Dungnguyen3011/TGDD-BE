@@ -19,7 +19,7 @@ import lombok.Data;
 @Table(name = "tbl_order")
 @Entity
 @Data
-public class Order implements Serializable {
+public class Order  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_id", nullable = false, updatable = false)
