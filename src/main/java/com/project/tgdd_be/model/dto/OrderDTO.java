@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDTO implements Serializable{
+public class OrderDTO {
 	private Integer orderId;
 
 	private String customerName;
