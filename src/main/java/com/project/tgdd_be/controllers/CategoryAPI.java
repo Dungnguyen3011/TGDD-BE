@@ -58,6 +58,7 @@ public class CategoryAPI {
 		
 	}
 	
+	//ket qua sai
 	@PutMapping("/api/categoryUpdateStatus/{id}")
 	public ResponseEntity<?> updateStatusCategory(@PathVariable Integer id, @RequestBody CategoryDTO cateDTO){
 		if(cs.getCategorByID(id) != null) {
