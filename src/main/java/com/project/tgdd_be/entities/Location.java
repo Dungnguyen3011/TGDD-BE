@@ -19,6 +19,8 @@ import lombok.Data;
 @Entity
 @Data
 public class Location {
+		
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
     @Column(name="location_id")
@@ -30,4 +32,14 @@ public class Location {
     @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
     @JsonManagedReference
 	private Set<Store> stores;
+
+    public Location(Integer locationId, String locationName) {
+		super();
+		this.locationId= locationId;
+		this.locationName=locationName;
+	}
+    public Location() {
+    	super();
+    }
 }
+
