@@ -16,6 +16,6 @@ public class StoreDTO {
 	
 	private boolean status;
 	
-	private String locationName;
+	private Integer locationId;
 
 }
