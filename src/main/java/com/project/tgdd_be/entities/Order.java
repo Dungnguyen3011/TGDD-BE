@@ -1,6 +1,5 @@
 package com.project.tgdd_be.entities;
 
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
 
@@ -11,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
 

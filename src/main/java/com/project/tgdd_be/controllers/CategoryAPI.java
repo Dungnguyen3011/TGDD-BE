@@ -25,10 +25,10 @@ public class CategoryAPI {
 		Category cate = new Category(cateDTO.getCategoryId(), cateDTO.getCategoryName(),cateDTO.getStatus());
 		return cate;
 	}
-	public Category dtoToStatusCategory(CategoryDTO cateDTO) {
-		Category cate = new Category(cateDTO.getCategoryId(),cateDTO.getStatus());
-		return cate;
-	}
+//	public Category dtoToStatusCategory(CategoryDTO cateDTO) {
+//		Category cate = new Category(cateDTO.getCategoryId(),cateDTO.getStatus());
+//		return cate;
+//	}
 	
 	@GetMapping("/api/category")
 	public ResponseEntity<?> getAll(){
@@ -62,7 +62,7 @@ public class CategoryAPI {
 	@PutMapping("/api/categoryUpdateStatus/{id}")
 	public ResponseEntity<?> updateStatusCategory(@PathVariable Integer id, @RequestBody CategoryDTO cateDTO){
 		if(cs.getCategorByID(id) != null) {
-			Category cate = dtoToStatusCategory(cateDTO);
+			Category cate = dtoToCategory(cateDTO);
 			return ResponseEntity.ok(cs.save(cate));
 		}
 		return null;
