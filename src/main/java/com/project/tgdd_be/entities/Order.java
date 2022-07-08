@@ -52,4 +52,21 @@ public class Order  {
 	@ManyToMany(mappedBy = "boughtOrders")
 	private Set<Product> products;
 
+	public Order() {
+	}
+
+	public Order(Integer orderId, String customerName, Date orderDate, String address, String phoneNumber, String email,
+			String shippingType, Float totalPrice, Boolean shippingStatus) {
+		this.orderId = orderId;
+		this.customerName = customerName;
+		this.orderDate = orderDate;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.shippingType = shippingType;
+		this.totalPrice = totalPrice;
+		this.shippingStatus = shippingStatus;
+
+	}
+
 }

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,6 +61,17 @@ public class OrderAPI {
 		updateOrder.setShippingStatus(orderDTO.getShippingStatus());
 		os.save(updateOrder);
 		return ResponseEntity.ok(updateOrder);
+	}
+	
+	public Order dtoToOrder(OrderDTO orderDTO) {
+		Order newOrder = new Order(orderDTO.getOrderId(),orderDTO.getCustomerName(),orderDTO.getOrderDate(),orderDTO.getAddress(),orderDTO.getPhoneNumber(),orderDTO.getEmail(),orderDTO.getShippingType(),orderDTO.getTotalPrice(),orderDTO.getShippingStatus());
+		return newOrder;
+	}
+	
+	@PostMapping("/api/createOrder")
+	public ResponseEntity<?> createOrder(@RequestBody OrderDTO orderDTO){
+		Order newOrder =  dtoToOrder(orderDTO);
+		return ResponseEntity.ok(os.save(newOrder));
 	}
 
 }
