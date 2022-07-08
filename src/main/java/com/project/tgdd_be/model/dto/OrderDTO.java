@@ -1,10 +1,6 @@
 package com.project.tgdd_be.model.dto;
 
-import java.io.Serializable;
 import java.sql.Date;
-import java.util.Set;
-
-import com.project.tgdd_be.entities.Product;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
