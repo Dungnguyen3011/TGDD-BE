@@ -27,7 +27,6 @@ public class LocationAPI {
 	private LocationService sv;
 	
 	public Location dtotoLocation(LocationDTO locationdto) {
-		
 		Location loca = new Location(locationdto.getLocationId(), locationdto.getLocationName());
 		return loca;
 	}
