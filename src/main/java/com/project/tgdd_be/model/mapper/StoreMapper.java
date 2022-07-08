@@ -14,7 +14,7 @@ public class StoreMapper {
 		
 		sto.setStatus(store.getStatus());
 		
-		sto.setLocationName(store.getLocation().getLocationName());
+		sto.setLocationId(store.getLocation().getLocationId());
 		
 		return sto;
 	}

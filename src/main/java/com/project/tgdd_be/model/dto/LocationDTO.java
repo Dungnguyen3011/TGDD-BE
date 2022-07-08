@@ -4,18 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class StoreDTO {
-	private Integer storeId;
-	
-	private String storeName;
-	
-	private boolean status;
-	
-	private Integer locationId;
-
+public class LocationDTO {
+		
+		private Integer locationId;
+		
+		private String locationName;
 }

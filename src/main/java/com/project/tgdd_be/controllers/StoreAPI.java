@@ -24,11 +24,11 @@ public class StoreAPI {
 	
 	private LocationService Lsv;
 
-//	public Store dtoToStore(StoreDTO storeDTO) {
-////		Location lc = Lsv.getLocationbyID(storeDTO.getLocationName());
-//		Store sto = new Store(storeDTO.getStoreId(), storeDTO.getStoreName(), storeDTO.isStatus(), lc);
-//		return sto;
-//	}
+	public Store dtoToStore(StoreDTO storeDTO) {
+		Location lc = Lsv.getLocationbyID(storeDTO.getLocationId());
+		Store sto = new Store(storeDTO.getStoreId(), storeDTO.getStoreName(), storeDTO.isStatus(), lc);
+		return sto;
+	}
 	@GetMapping("/api/store")
 	public ResponseEntity<?> getAll() {
 		List<StoreDTO> sto = stv.listAll();
