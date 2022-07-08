@@ -11,7 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.tgdd_be.entities.Category;
 import com.project.tgdd_be.entities.Location;
+import com.project.tgdd_be.entities.Manufacturer;
+import com.project.tgdd_be.entities.Product;
+import com.project.tgdd_be.entities.Store;
+import com.project.tgdd_be.model.dto.LocationDTO;
+import com.project.tgdd_be.model.dto.ProductDTO;
 import com.project.tgdd_be.service.LocationService;
 
 @RestController
@@ -20,7 +26,11 @@ public class LocationAPI {
 	@Autowired
 	private LocationService sv;
 	
-
+	public Location dtotoLocation(LocationDTO locationdto) {
+		
+		Location loca = new Location(locationdto.getLocationId(), locationdto.getLocationName());
+		return loca;
+	}
 	
 	@GetMapping("/api/location")
 	public ResponseEntity<?> getAll(){
