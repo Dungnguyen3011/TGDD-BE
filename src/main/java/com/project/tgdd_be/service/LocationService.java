@@ -3,6 +3,7 @@ package com.project.tgdd_be.service;
 import java.util.List;
 
 import com.project.tgdd_be.entities.Location;
+import com.project.tgdd_be.model.dto.LocationDTO;
 
 public interface LocationService {
 	
@@ -14,6 +15,5 @@ public interface LocationService {
 
 	public Location getLocationbyID(Integer id);
 	
-	
-	
+	public LocationDTO getLocationDTObyId(Integer id);
 }
