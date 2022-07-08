@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.tgdd_be.entities.Category;
-import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.model.dto.CategoryDTO;
-import com.project.tgdd_be.model.dto.ProductDTO;
 import com.project.tgdd_be.model.mapper.CategoryMapper;
-import com.project.tgdd_be.model.mapper.ProductMapper;
 import com.project.tgdd_be.repositories.CategoryRepository;
 import com.project.tgdd_be.service.CategoryService;
 
@@ -36,6 +33,11 @@ public class CategoryServiceImp implements CategoryService{
 	}
 	
 	@Override
+	public CategoryDTO getCategoryDTOByID(Integer id) {
+		return CategoryMapper.ToCategoryDTO(categoryRep.findById(id).get());
+	}
+	
+	@Override
 	public Category getCategorByID(Integer id) {
 		return categoryRep.findById(id).get();	
 	}
@@ -54,7 +56,7 @@ public class CategoryServiceImp implements CategoryService{
 	@Override
 	public List<CategoryDTO> listAllDTO(){
 		List<CategoryDTO> listdto = new ArrayList<>();		
-		List<Category> list = categoryRep.listCateForCus();
+		List<Category> list = categoryRep.findAll();
 		
 		for(Category item: list) {	
 			listdto.add(CategoryMapper.ToCategoryDTO(item));
@@ -62,8 +64,5 @@ public class CategoryServiceImp implements CategoryService{
 		return listdto;
 	}
 	
-	@Override
-	public List<Category> deleteCategory(){
-		return categoryRep.deleteCategory();
-	}
+	
 }
