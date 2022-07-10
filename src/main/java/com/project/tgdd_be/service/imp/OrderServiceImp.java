@@ -54,17 +54,11 @@ public class OrderServiceImp implements OrderService {
 		return orderRepository.save(order);
 	}
 
-	public OrderDTO getID(Integer id) {
-		/* return orderRepository.findById(id).get(); */
-		return OrderMapper.toOrderDTO(orderRepository.findById(id).get());
-	}
 
 	@Override
 	public Order updateShippingStatus(Integer id, Order order) {
-
 		if (orderRepository.findById(id).isPresent()) {
-			Order existOrder = orderRepository.findById(id).get();
-			order.setShippingStatus(false);
+			Order existOrder = orderRepository.findById(id).get();		
 			Order updateOrder = orderRepository.save(existOrder);
 			return updateOrder;
 		} else {
@@ -80,6 +74,17 @@ public class OrderServiceImp implements OrderService {
 	@Override
 	public OrderDTO getOrderDTOById(Integer id) {
 		return OrderMapper.toOrderDTO(orderRepository.findById(id).get());
+	}
+
+	@Override
+	public List<OrderDTO> listAllForcus() {
+		List<OrderDTO> listOrderDTO = new ArrayList<>();
+		List<Order> listOrder = orderRepository.listOrderForCus();
+		for (Order order : listOrder) {
+			listOrderDTO.add(OrderMapper.toOrderDTO(order));
+		}
+		return listOrderDTO;
+		
 	}
 
 
