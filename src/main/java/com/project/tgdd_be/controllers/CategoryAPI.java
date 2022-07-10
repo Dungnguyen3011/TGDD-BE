@@ -57,7 +57,7 @@ public class CategoryAPI {
 		
 	}
 	
-	@PutMapping("/api/categoryUpdateStatus/{id}")
+	@PutMapping("/api/deleteCategory/{id}")
 	public ResponseEntity<?> updateStatusCategory(@PathVariable Integer id) {
 		CategoryDTO cateDTO = cs.findCategoryById(id);
 		Category cate = dtoToCategory(cateDTO);

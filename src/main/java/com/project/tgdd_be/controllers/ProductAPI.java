@@ -80,12 +80,12 @@ public class ProductAPI {
 			return ResponseEntity.ok(sv.save(pr));			
 	}	
 	
-//	@PutMapping("/api/product")
-//	public ResponseEntity<?> updateProduct(@RequestBody ProductDTO product){
-//		
-//			Product pr = dtotoProduct(product);
-//			return ResponseEntity.ok(sv.save(pr));
-//				
-//		
-//	}
+	@PutMapping("/api/deleteProduct/{id}")
+	public ResponseEntity<?> deleteProduct(@PathVariable Integer id){
+			ProductDTO pr = sv.getProductDtobyID(id);
+			Product pro = dtotoProduct(pr);
+			pro.setStatus(false);
+			return ResponseEntity.ok(sv.save(pro));			
+	}
+
 }
