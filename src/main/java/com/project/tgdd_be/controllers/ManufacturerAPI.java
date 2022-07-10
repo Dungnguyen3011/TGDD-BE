@@ -1,28 +1,19 @@
 package com.project.tgdd_be.controllers;
 
 
+import java.text.ParseException;
 import java.util.List;
-
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.project.tgdd_be.entities.Manufacturer;
-import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.model.dto.ManufacturerDTO;
-import com.project.tgdd_be.model.dto.ProductDTO;
-import com.project.tgdd_be.repositories.ManufacturerRepository;
 import com.project.tgdd_be.service.ManufacturerService;
 @RestController
 public class ManufacturerAPI {
@@ -60,8 +51,14 @@ public class ManufacturerAPI {
 			Manufacturer pr = dtotoManufacturer(manufacturer);
 			return ResponseEntity.ok(mv.save(pr));
 		}
-		return null;
-		
+		return null;		
+	}
+	@PutMapping("/api/deleteManufacturer/{id}")
+	public ResponseEntity<?> deleteStatusManufacturer(@PathVariable Integer id) throws ParseException {
+		ManufacturerDTO manuDTO = mv.findManufacturerById(id);
+		Manufacturer manu = dtotoManufacturer(manuDTO);
+		manu.setStatus(false);
+		return ResponseEntity.ok(mv.save(manu));
 	}
 }
 
