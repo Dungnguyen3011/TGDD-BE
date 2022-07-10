@@ -23,6 +23,14 @@ public class CategoryServiceImp implements CategoryService{
 	}
 	
 	@Override
+	public CategoryDTO findCategoryById(Integer id) {
+		CategoryDTO cateDTO = new CategoryDTO();
+		Category cate = categoryRep.categoryById(id);
+		cateDTO = CategoryMapper.ToCategoryDTO(cate);
+		return cateDTO;
+	}
+	
+	@Override
 	public Category save(Category cat) {
 		return categoryRep.save(cat);
 	}
