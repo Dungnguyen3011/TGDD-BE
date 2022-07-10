@@ -50,22 +50,29 @@ public class CategoryAPI {
 	
 	@PutMapping("/api/category/{id}")
 	public ResponseEntity<?> updateCategory(@PathVariable Integer id, @RequestBody CategoryDTO cateDTO){
-		if(cs.getCategorByID(id) != null) {
+		
 			Category cate = dtoToCategory(cateDTO);
+			cate.setCategoryId(id);
 			return ResponseEntity.ok(cs.save(cate));
-		}
-		return null;
 		
 	}
 	
-	//ket qua sai
 	@PutMapping("/api/categoryUpdateStatus/{id}")
-	public ResponseEntity<?> updateStatusCategory(@PathVariable Integer id, @RequestBody CategoryDTO cateDTO){
-		if(cs.getCategorByID(id) != null) {
-			Category cate = dtoToCategory(cateDTO);
-			return ResponseEntity.ok(cs.save(cate));
-		}
-		return null;
-		
+	public ResponseEntity<?> updateStatusCategory(@PathVariable Integer id) {
+		CategoryDTO cateDTO = cs.findCategoryById(id);
+		Category cate = dtoToCategory(cateDTO);
+		cate.setStatus(false);
+		return ResponseEntity.ok(cs.save(cate));
 	}
+	
+	//ket qua sai
+//	@PutMapping("/api/categoryUpdateStatus/{id}")
+//	public ResponseEntity<?> updateStatusCategory(@PathVariable Integer id, @RequestBody CategoryDTO cateDTO){
+//		if(cs.getCategorByID(id) != null) {
+//			Category cate = dtoToCategory(cateDTO);
+//			return ResponseEntity.ok(cs.save(cate));
+//		}
+//		return null;
+//		
+//	}
 }
