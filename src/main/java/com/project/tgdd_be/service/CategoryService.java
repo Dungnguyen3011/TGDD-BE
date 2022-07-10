@@ -8,7 +8,10 @@ import com.project.tgdd_be.model.dto.CategoryDTO;
 public interface CategoryService {
 
 	public List<Category> listAll();
+	
 	public List<CategoryDTO> listAllDTO();
+	
+	public CategoryDTO findCategoryById(Integer id);
 
 	public Category save(Category cat);
 
