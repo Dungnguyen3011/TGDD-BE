@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-
+import org.springframework.data.repository.query.Param;
 import com.project.tgdd_be.entities.Manufacturer;
 
 
@@ -17,4 +17,7 @@ public interface ManufacturerRepository extends JpaRepository<Manufacturer, Inte
 	@Query(value ="UPDATE tbl_manufacturer m "+
 			"SET m.status = 'FALSE' "+"WHERE m.manufacturer_id IN ?", nativeQuery = true)
 	void updateMStatus(Integer[] ids);
+	
+	@Query(value ="SELECT m FROM Manufacturer m WHERE m.manufacturerId = :id")
+	Manufacturer manufacturerById(@Param("id") Integer id);
 }

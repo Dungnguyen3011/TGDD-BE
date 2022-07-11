@@ -21,7 +21,7 @@ import lombok.Data;
 public class Manufacturer {
     @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
-    @Column(name="manufacturer_id")
+    @Column(name="manufacturer_id", nullable = false, updatable = false)
 	private Integer manufacturerId;
     
     @Column(name="manufacturer_name")
