@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.tgdd_be.entities.Location;
-import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.entities.Store;
 import com.project.tgdd_be.model.dto.StoreDTO;
 import com.project.tgdd_be.service.LocationService;
