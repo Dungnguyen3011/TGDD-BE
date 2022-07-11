@@ -36,8 +36,9 @@ public class StoreAPI {
 	}
 
 	@PostMapping("/api/store")
-	public Store createStore(Store store) {
-		return stv.save(store);
+	public ResponseEntity<?> createStore(@RequestBody StoreDTO store) {
+		Store st = dtoToStore(store);
+		return ResponseEntity.ok(stv.save(st));
 	}
 
 	@GetMapping("/api/storeByLocation/{id}")
@@ -54,6 +55,7 @@ public class StoreAPI {
 		stv.save(newStore);
 		return ResponseEntity.ok(newStore);
 	}
+	
 	
 
 }
