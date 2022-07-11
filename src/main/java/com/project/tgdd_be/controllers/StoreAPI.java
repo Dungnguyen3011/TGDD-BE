@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.tgdd_be.entities.Location;
+import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.entities.Store;
 import com.project.tgdd_be.model.dto.StoreDTO;
 import com.project.tgdd_be.service.LocationService;
@@ -48,14 +49,19 @@ public class StoreAPI {
 	}
 
 	@PutMapping("api/updateStore/{id}")
-	public ResponseEntity<?> updateStore(@PathVariable(name = "store_id") Integer id, @RequestBody Store store) {
-		Store newStore = stv.getStorebyID(id);
-		newStore.setStoreName(store.getStoreName());
-		//newStore.setLocationId(store.getLocationId());
-		stv.save(newStore);
-		return ResponseEntity.ok(newStore);
+	public ResponseEntity<?> updateStore(@PathVariable Integer id, @RequestBody StoreDTO store) {
+		Store st = dtoToStore(store);
+		st.setStoreId(id);
+		return ResponseEntity.ok(stv.save(st));
 	}
 	
+	@PutMapping("/api/deleteStore/{id}")
+	public ResponseEntity<?> deleteStore(@PathVariable Integer id) {
+		StoreDTO st = stv.getStoreDTObyID(id);
+		Store sto = dtoToStore(st);
+		sto.setStatus(false);
+		return ResponseEntity.ok(stv.save(sto));
+	}
 	
 
 }
