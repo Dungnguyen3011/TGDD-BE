@@ -22,6 +22,7 @@ public class StoreAPI {
 	@Autowired
 	private StoreService stv;
 	
+	@Autowired
 	private LocationService Lsv;
 
 	public Store dtoToStore(StoreDTO storeDTO) {
