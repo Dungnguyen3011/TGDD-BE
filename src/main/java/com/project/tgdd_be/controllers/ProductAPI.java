@@ -87,5 +87,23 @@ public class ProductAPI {
 			pro.setStatus(false);
 			return ResponseEntity.ok(sv.save(pro));			
 	}
+	
+	@GetMapping("/api/product/{id}")
+	public ResponseEntity<?> getProductById(@PathVariable Integer id){
+		ProductDTO pr= sv.getProductDtobyID(id);
+		return ResponseEntity.ok(pr);
+	}
+	
+	@GetMapping("/api/productByCategory/{id}")
+	public ResponseEntity<?> getProductByCategory(@PathVariable Integer id){
+		List<ProductDTO> pr= sv.listProductByCategory(id);
+		return ResponseEntity.ok(pr);
+	}
+	
+	@GetMapping("/api/productByManufacturer/{id}")
+	public ResponseEntity<?> getProductByManufacturer(@PathVariable Integer id){
+		List<ProductDTO> pr= sv.listProductByManufacturer(id);
+		return ResponseEntity.ok(pr);
+	}
 
 }

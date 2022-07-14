@@ -43,9 +43,9 @@ public class OrderAPI {
 	 * -> new ResponseEntity<>(order, HttpStatus.OK)) .orElseGet(() -> new
 	 * ResponseEntity<>(HttpStatus.NOT_FOUND)); }
 	 */
-	@GetMapping("/api/listOrderBySpecificPhone/{query}")
-	public ResponseEntity<?> getListOrderBySpecificPhone(@PathVariable String query) {
-		return ResponseEntity.ok(os.listOrderBySpecificPhone(query));
+	@GetMapping("/api/listOrderBySpecificPhone/{phone}")
+	public ResponseEntity<?> getListOrderBySpecificPhone(@PathVariable String phone) {
+		return ResponseEntity.ok(os.listOrderBySpecificPhone(phone));
 	}
 
 //not work 

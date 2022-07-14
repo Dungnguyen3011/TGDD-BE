@@ -84,5 +84,27 @@ public class ProductServiceImp implements ProductService {
 		return repo.findById(id).get();
 	}
 
+	@Override
+	public List<ProductDTO> listProductByCategory(Integer id) {
+		List<ProductDTO> listdto = new ArrayList<>();		
+		List<Product> list = repo.listProductByCategory(id);
+		
+		for(Product item: list) {	
+			listdto.add(ProductMapper.toProductDTO(item));
+		}
+		return listdto;
+	}
+
+	@Override
+	public List<ProductDTO> listProductByManufacturer(Integer id) {
+		List<ProductDTO> listdto = new ArrayList<>();		
+		List<Product> list = repo.listProductByManufacturer(id);
+		
+		for(Product item: list) {	
+			listdto.add(ProductMapper.toProductDTO(item));
+		}
+		return listdto;
+	}
+
 
 }

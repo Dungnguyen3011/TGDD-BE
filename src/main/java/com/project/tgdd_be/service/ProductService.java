@@ -22,5 +22,9 @@ public interface ProductService {
 	public List<ProductDTO> listAllForCus();
 	
 	public List<ProductDTO> listProductFindByLocation(Integer id);
+	
+	public List<ProductDTO> listProductByCategory(Integer id);
+	
+	public List<ProductDTO> listProductByManufacturer(Integer id);
 }
 	
