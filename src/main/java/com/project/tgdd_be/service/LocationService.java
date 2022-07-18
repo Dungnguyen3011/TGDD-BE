@@ -7,7 +7,7 @@ import com.project.tgdd_be.model.dto.LocationDTO;
 
 public interface LocationService {
 	
-	public List<Location> listAll();
+	public List<LocationDTO> listAll();
 	
 	public void save(Location location);
 	

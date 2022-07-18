@@ -33,7 +33,7 @@ public class LocationAPI {
 	
 	@GetMapping("/api/location")
 	public ResponseEntity<?> getAll(){
-		List<Location> pr= sv.listAll();
+		List<LocationDTO> pr= sv.listAll();
 		return ResponseEntity.ok(pr);
 	}
 	
