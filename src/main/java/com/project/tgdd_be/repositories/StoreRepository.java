@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.project.tgdd_be.entities.Order;
 import com.project.tgdd_be.entities.Store;
 
 public interface StoreRepository extends JpaRepository<Store, Integer> {

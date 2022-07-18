@@ -3,12 +3,15 @@ package com.project.tgdd_be.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.tgdd_be.entities.Category;
@@ -16,6 +19,7 @@ import com.project.tgdd_be.entities.Manufacturer;
 import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.entities.Store;
 import com.project.tgdd_be.model.dto.ProductDTO;
+import com.project.tgdd_be.model.dto.ProductPagingDTO;
 import com.project.tgdd_be.service.CategoryService;
 import com.project.tgdd_be.service.ManufacturerService;
 import com.project.tgdd_be.service.ProductService;
@@ -45,9 +49,16 @@ public class ProductAPI {
 	}
 	
 	@GetMapping("/api/product")
-	public ResponseEntity<?> getAll(){
-		List<ProductDTO> pr= sv.listAll();
-		return ResponseEntity.ok(pr);
+	public ResponseEntity<?> getAll(@RequestParam("page") int page,
+									@RequestParam("limit") int limit){
+		ProductPagingDTO result = new ProductPagingDTO();
+		result.setCurrentPage(page);
+		Pageable pageable =  PageRequest.of(page - 1, limit);
+		result.setItems(sv.listAll(pageable));
+		result.setTotalPage(null);
+		result.setTotalPage((int)Math.ceil((double)(sv.totalItems()) / limit));
+
+		return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping("/api/product")
