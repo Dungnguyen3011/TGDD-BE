@@ -13,9 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -67,15 +69,9 @@ public class Product  {
 	@JoinColumn(name = "storeId")
 	private Store store;
 	
-	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "tbl_order_details",
-            joinColumns = {
-                @JoinColumn(name = "product_id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "order_id")}
-    )
-    private Set<Order> boughtOrders;
+	@JsonManagedReference
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	private Set<OrderDetail> orderdetail;
 
 	public Product(Integer productId, String productName, Integer quantity, Float unitPrice, Float salePrice,
 			String description, Integer rate, Boolean status, String image, Category category,

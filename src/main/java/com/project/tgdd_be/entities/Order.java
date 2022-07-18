@@ -5,11 +5,15 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -46,8 +50,9 @@ public class Order  {
 	@Column(name = "shipping_status")
 	private Boolean shippingStatus;
 
-	@ManyToMany(mappedBy = "boughtOrders")
-	private Set<Product> products;
+	@JsonManagedReference
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+	private Set<OrderDetail> orderdetail;
 
 	public Order() {
 	}
