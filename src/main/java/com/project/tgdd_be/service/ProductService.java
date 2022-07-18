@@ -2,12 +2,16 @@ package com.project.tgdd_be.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.model.dto.ProductDTO;
 
 public interface ProductService {
 	
-	public List<ProductDTO> listAll();
+	public List<ProductDTO> listAll(Pageable pageable);
+	
+	int totalItems();
 		
 	public Product save(Product product);
 	

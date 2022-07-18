@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.project.tgdd_be.entities.Product;
@@ -20,10 +21,9 @@ public class ProductServiceImp implements ProductService {
 	
 	
 	@Override
-	public List<ProductDTO> listAll() {
+	public List<ProductDTO> listAll(Pageable pageable) {
 		List<ProductDTO> listdto = new ArrayList<>();		
-		List<Product> list = repo.findAll();
-		
+		List<Product> list = repo.findAll(pageable).getContent();
 		for(Product item: list) {	
 			listdto.add(ProductMapper.toProductDTO(item));
 		}
@@ -42,7 +42,6 @@ public class ProductServiceImp implements ProductService {
 
 	@Override
 	public ProductDTO getProductDtobyID(Integer id) {
-		//return repo.findById(id).get();
 		return ProductMapper.toProductDTO(repo.findById(id).get());
 	}
 
@@ -104,6 +103,11 @@ public class ProductServiceImp implements ProductService {
 			listdto.add(ProductMapper.toProductDTO(item));
 		}
 		return listdto;
+	}
+
+	@Override
+	public int totalItems() {
+		return (int) repo.count();
 	}
 
 
