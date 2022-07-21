@@ -2,6 +2,8 @@ package com.project.tgdd_be.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -62,7 +64,7 @@ public class ProductAPI {
 	}
 	
 	@PostMapping("/api/product")
-	public ResponseEntity<?> createProduct(@RequestBody ProductDTO product) {
+	public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDTO product) {
 		Product pr = dtotoProduct(product);
 		return ResponseEntity.ok(sv.save(pr));
 	}

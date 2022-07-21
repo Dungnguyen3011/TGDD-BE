@@ -2,6 +2,8 @@ package com.project.tgdd_be.model.dto;
 
 import java.sql.Date;
 
+import javax.validation.constraints.Email;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,7 @@ public class OrderDTO {
 
 	private String phoneNumber;
 
+	@Email
 	private String email;
 
 	private String shippingType;
