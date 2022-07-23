@@ -87,5 +87,20 @@ public class OrderServiceImp implements OrderService {
 		
 	}
 
+//	@Override
+//	public List<OrderDTO> listAll(Pageable pageable) {
+//		List<OrderDTO> listOrderDTO = new ArrayList<>();
+//		List<Order> listOrder = orderRepository.findAll(pageable).getContent();
+//		for (Order order : listOrder) {
+//			listOrderDTO.add(OrderMapper.toOrderDTO(order));
+//		}
+//		return listOrderDTO;		
+//	}
+
+//	@Override
+//	public int totalItems() {
+//		return (int) orderRepository.count();
+//	}
+
 
 }

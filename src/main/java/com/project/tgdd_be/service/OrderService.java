@@ -8,6 +8,9 @@ import com.project.tgdd_be.model.dto.OrderDTO;
 public interface OrderService {
 	
 	public List<OrderDTO> listAll();
+//	public List<OrderDTO> listAll(Pageable pageable);
+	
+//	int totalItems();
 
 	public Order save(Order order);
 
