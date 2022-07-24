@@ -16,12 +16,5 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 			+ " o.shippingStatus = 'true' ")
 	List<Order> listOrderForCus();
 	
-	/*
-	 * @Query(value = "UPDATE Order o " + "SET o.shippingStatus = 'FALSE' " +
-	 * "WHERE o.orderId =  ")
-	 */	
-	/*
-	 * public Order updateShippingStatus(Integer id, Order order);
-	 */	
 	public Order findByPhoneNumber(String phoneNumber);
 }
