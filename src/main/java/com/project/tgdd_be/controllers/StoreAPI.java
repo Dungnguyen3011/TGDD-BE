@@ -2,6 +2,8 @@ package com.project.tgdd_be.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,7 @@ public class StoreAPI {
 	@Autowired
 	private StoreService stv;
 	
+	@Autowired
 	private LocationService Lsv;
 
 	public Store dtoToStore(StoreDTO storeDTO) {
@@ -36,7 +39,7 @@ public class StoreAPI {
 	}
 
 	@PostMapping("/api/store")
-	public ResponseEntity<?> createStore(@RequestBody StoreDTO store) {
+	public ResponseEntity<?> createStore(@Valid @RequestBody StoreDTO store) {
 		Store st = dtoToStore(store);
 		return ResponseEntity.ok(stv.save(st));
 	}
@@ -48,7 +51,7 @@ public class StoreAPI {
 	}
 
 	@PutMapping("api/updateStore/{id}")
-	public ResponseEntity<?> updateStore(@PathVariable Integer id, @RequestBody StoreDTO store) {
+	public ResponseEntity<?> updateStore(@PathVariable Integer id, @RequestBody @Valid StoreDTO store) {
 		Store st = dtoToStore(store);
 		st.setStoreId(id);
 		return ResponseEntity.ok(stv.save(st));

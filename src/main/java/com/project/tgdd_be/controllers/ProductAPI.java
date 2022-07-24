@@ -2,6 +2,8 @@ package com.project.tgdd_be.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -52,19 +54,19 @@ public class ProductAPI {
 
 	@GetMapping("/api/product")
 	public ResponseEntity<?> getAll(@RequestParam("page") int page,
-									@RequestParam("limit") int limit) {
+									@RequestParam("limit") int limit){
 		ProductPagingDTO result = new ProductPagingDTO();
 		result.setCurrentPage(page);
-		Pageable pageable = PageRequest.of(page - 1, limit);
+		Pageable pageable =  PageRequest.of(page - 1, limit);
 		result.setItems(sv.listAll(pageable));
 		result.setTotalPage(null);
-		result.setTotalPage((int) Math.ceil((double) (sv.totalItems()) / limit));
+		result.setTotalPage((int)Math.ceil((double)(sv.totalItems()) / limit));
 
 		return ResponseEntity.ok(result);
 	}
 
 	@PostMapping("/api/product")
-	public ResponseEntity<?> createProduct(@RequestBody ProductDTO product) {
+	public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDTO product) {
 		Product pr = dtotoProduct(product);
 		return ResponseEntity.ok(sv.save(pr));
 	}
@@ -87,12 +89,12 @@ public class ProductAPI {
 	}
 
 	@PutMapping("/api/product/{id}")
-	public ResponseEntity<?> updateProduct(@PathVariable Integer id, @RequestBody ProductDTO product) {
-		Product pr = dtotoProduct(product);
-		pr.setProductId(id);
-		return ResponseEntity.ok(sv.save(pr));
-	}
-
+	public ResponseEntity<?> updateProduct(@PathVariable Integer id,@Valid @RequestBody ProductDTO product){
+			Product pr = dtotoProduct(product);
+			pr.setProductId(id);
+			return ResponseEntity.ok(sv.save(pr));			
+	}	
+	
 	@PutMapping("/api/deleteProduct/{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Integer id) {
 		ProductDTO pr = sv.getProductDtobyID(id);

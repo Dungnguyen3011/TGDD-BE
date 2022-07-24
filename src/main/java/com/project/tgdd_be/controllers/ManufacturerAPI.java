@@ -2,8 +2,9 @@ package com.project.tgdd_be.controllers;
 
 
 import java.text.ParseException;
-import java.util.List;
 
+import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +32,7 @@ public class ManufacturerAPI {
 	}
 	
 	@PostMapping("/api/manufacturer")
-	public Manufacturer createManufacturer(@RequestBody ManufacturerDTO manufacturerDTO) {
+	public Manufacturer createManufacturer(@RequestBody  @Valid ManufacturerDTO manufacturerDTO) {
 		Manufacturer mn =  dtotoManufacturer(manufacturerDTO);
 		return mv.save(mn);
 		
@@ -46,7 +47,7 @@ public class ManufacturerAPI {
 	}
 	// chay duoc roi
 	@PutMapping("/api/updatemanufacturer/{id}")
-	public ResponseEntity<?> updateManufacturer(@PathVariable Integer id, @RequestBody ManufacturerDTO manufacturer){
+	public ResponseEntity<?> updateManufacturer(@PathVariable Integer id, @RequestBody @Valid ManufacturerDTO manufacturer){
 		if(mv.getManufacturerbyID(id) != null) {
 			Manufacturer pr = dtotoManufacturer(manufacturer);
 			return ResponseEntity.ok(mv.save(pr));

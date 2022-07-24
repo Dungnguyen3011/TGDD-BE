@@ -1,5 +1,6 @@
 package com.project.tgdd_be.service.imp;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,22 +8,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.tgdd_be.entities.Order;
+import com.project.tgdd_be.entities.OrderDetail;
+import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.model.dto.OrderDTO;
+import com.project.tgdd_be.model.dto.OrderDetailDTO;
+import com.project.tgdd_be.model.mapper.OrderDetailMapper;
 import com.project.tgdd_be.model.mapper.OrderMapper;
+import com.project.tgdd_be.repositories.OrderDetailRepository;
 import com.project.tgdd_be.repositories.OrderRepository;
+import com.project.tgdd_be.repositories.ProductRepository;
 import com.project.tgdd_be.service.OrderService;
 
 @Service
 public class OrderServiceImp implements OrderService {
+	
+	Date date = new Date(System.currentTimeMillis());
+	
+	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
+	private ProductRepository repo;
+	
+	@Autowired
+	private OrderDetailRepository orderDetailRepo;
 
 	@Override
 	public List<OrderDTO> listAll() {
 		List<OrderDTO> listOrderDTO = new ArrayList<>();
 		List<Order> listOrder = orderRepository.findAll();
 		for (Order order : listOrder) {
-			listOrderDTO.add(OrderMapper.toOrderDTO(order));
+			OrderDTO dto = new OrderDTO();
+			dto = OrderMapper.toOrderDTO(order);
+			
+			List<OrderDetailDTO> listDetaildto = new ArrayList<>();
+			List<OrderDetail> listDetail = orderDetailRepo.ListDetailByOrderId(order.getOrderId());
+			for(OrderDetail orderdetail : listDetail) {
+				listDetaildto.add(OrderDetailMapper.toOrderDeatilDTO(orderdetail));
+			}
+			dto.setOrderdetailList(listDetaildto);
+			listOrderDTO.add(dto);
 		}
 		return listOrderDTO;
 	}
@@ -34,7 +60,6 @@ public class OrderServiceImp implements OrderService {
 
 	@Override
 	public Order getOrderById(Integer id) {
-		/* return orderRepository.findById(id).get(); */
 		return orderRepository.findById(id).get();
 	}
 
@@ -45,7 +70,6 @@ public class OrderServiceImp implements OrderService {
 		for (Order order : listOrder) {
 			listOrderDTO.add(OrderMapper.toOrderDTO(order));
 		}
-		/* return orderRepository.listOrderBySpecificPhone(query); */
 		return listOrderDTO;
 	}
 
@@ -53,7 +77,6 @@ public class OrderServiceImp implements OrderService {
 	public Order save(Order order) {
 		return orderRepository.save(order);
 	}
-
 
 	@Override
 	public Order updateShippingStatus(Integer id, Order order) {
@@ -88,4 +111,35 @@ public class OrderServiceImp implements OrderService {
 	}
 
 
+	@Override
+	public Order saveNewORder(OrderDTO orderdto) {
+		Order order = new Order(orderdto);
+		order.setOrderDate(date);
+		orderRepository.save(order);
+		
+		
+		List<OrderDetail> listOrderDetail = new ArrayList<>();
+		
+		if(orderdto.getOrderdetailList() != null) {
+			for(OrderDetailDTO orderdetailDTO : orderdto.getOrderdetailList()) {
+				OrderDetail orderDetail = new OrderDetail();
+				Product product = new Product();
+				product = repo.findById(orderdetailDTO.getProductId()).get();
+				orderDetail.setProduct(product);
+				orderDetail.setOrder(order);
+				orderDetail.setPrice(orderdetailDTO.getUnitPrice());
+				orderDetail.setQuantity(orderdetailDTO.getQuantity());
+				
+				listOrderDetail.add(orderDetail);
+			}
+			
+			orderDetailRepo.saveAll(listOrderDetail);
+		}
+		
+		order.setOrderdetail(listOrderDetail);
+		
+		return order;
+	}
 }
+
+

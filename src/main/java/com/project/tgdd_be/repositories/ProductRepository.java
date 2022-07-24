@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.project.tgdd_be.entities.Product;
-import com.project.tgdd_be.model.dto.ProductDTO;
 
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
