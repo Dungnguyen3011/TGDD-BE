@@ -100,5 +100,4 @@ public class ProductAPI {
 			pro.setStatus(false);
 			return ResponseEntity.ok(sv.save(pro));			
 	}
-
 }

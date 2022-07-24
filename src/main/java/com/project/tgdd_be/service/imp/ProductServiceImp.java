@@ -42,7 +42,6 @@ public class ProductServiceImp implements ProductService {
 
 	@Override
 	public ProductDTO getProductDtobyID(Integer id) {
-		//return repo.findById(id).get();
 		return ProductMapper.toProductDTO(repo.findById(id).get());
 	}
 
