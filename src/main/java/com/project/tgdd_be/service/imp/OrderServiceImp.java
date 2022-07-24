@@ -120,7 +120,7 @@ public class OrderServiceImp implements OrderService {
 		orderRepository.save(order);
 		
 		
-		List<OrderDetail> listOrder = new ArrayList<>();
+		List<OrderDetail> listOrderDetail = new ArrayList<>();
 		
 		if(orderdto.getOrderdetailList() != null) {
 			for(OrderDetailDTO orderdetailDTO : orderdto.getOrderdetailList()) {
@@ -132,13 +132,13 @@ public class OrderServiceImp implements OrderService {
 				orderDetail.setPrice(orderdetailDTO.getUnitPrice());
 				orderDetail.setQuantity(orderdetailDTO.getQuantity());
 				
-				listOrder.add(orderDetail);
+				listOrderDetail.add(orderDetail);
 			}
 			
-			orderDetailRepo.saveAll(listOrder);
+			orderDetailRepo.saveAll(listOrderDetail);
 		}
 		
-		order.setOrderdetail(listOrder);
+		order.setOrderdetail(listOrderDetail);
 		
 		return order;
 	}
