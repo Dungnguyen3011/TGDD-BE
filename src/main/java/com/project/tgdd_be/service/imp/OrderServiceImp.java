@@ -60,7 +60,6 @@ public class OrderServiceImp implements OrderService {
 
 	@Override
 	public Order getOrderById(Integer id) {
-		/* return orderRepository.findById(id).get(); */
 		return orderRepository.findById(id).get();
 	}
 
@@ -71,7 +70,6 @@ public class OrderServiceImp implements OrderService {
 		for (Order order : listOrder) {
 			listOrderDTO.add(OrderMapper.toOrderDTO(order));
 		}
-		/* return orderRepository.listOrderBySpecificPhone(query); */
 		return listOrderDTO;
 	}
 
@@ -79,7 +77,6 @@ public class OrderServiceImp implements OrderService {
 	public Order save(Order order) {
 		return orderRepository.save(order);
 	}
-
 
 	@Override
 	public Order updateShippingStatus(Integer id, Order order) {
@@ -113,6 +110,7 @@ public class OrderServiceImp implements OrderService {
 		
 	}
 
+
 	@Override
 	public Order saveNewORder(OrderDTO orderdto) {
 		Order order = new Order(orderdto);
@@ -142,21 +140,6 @@ public class OrderServiceImp implements OrderService {
 		
 		return order;
 	}
-
-//	@Override
-//	public List<OrderDTO> listAll(Pageable pageable) {
-//		List<OrderDTO> listOrderDTO = new ArrayList<>();
-//		List<Order> listOrder = orderRepository.findAll(pageable).getContent();
-//		for (Order order : listOrder) {
-//			listOrderDTO.add(OrderMapper.toOrderDTO(order));
-//		}
-//		return listOrderDTO;		
-//	}
-
-//	@Override
-//	public int totalItems() {
-//		return (int) orderRepository.count();
-//	}
-
-
 }
+
+
