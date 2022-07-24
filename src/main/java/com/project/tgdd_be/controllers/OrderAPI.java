@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.tgdd_be.entities.Order;
 import com.project.tgdd_be.model.dto.OrderDTO;
-//import com.project.tgdd_be.model.dto.OrderPagingDTO;
 import com.project.tgdd_be.service.OrderService;
 
 @RestController
@@ -59,9 +58,9 @@ public class OrderAPI {
 	}
 		
 	@PostMapping("/api/createOrder")
-	public ResponseEntity<?> createOrder(@Valid @RequestBody OrderDTO orderDTO) {
-		Order newOrder =  dtoToOrder(orderDTO);
-		return ResponseEntity.ok(os.save(newOrder));
+	public String createOrder(@Valid @RequestBody OrderDTO orderDTO) {
+		os.saveNewORder(orderDTO);
+		return "oke";
 	}
 
 }

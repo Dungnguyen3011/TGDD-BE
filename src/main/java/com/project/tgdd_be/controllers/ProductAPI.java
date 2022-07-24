@@ -87,7 +87,7 @@ public class ProductAPI {
 	}
 	
 	@PutMapping("/api/product/{id}")
-	public ResponseEntity<?> updateProduct(@PathVariable Integer id, @RequestBody ProductDTO product){
+	public ResponseEntity<?> updateProduct(@PathVariable Integer id,@Valid @RequestBody ProductDTO product){
 			Product pr = dtotoProduct(product);
 			pr.setProductId(id);
 			return ResponseEntity.ok(sv.save(pr));			

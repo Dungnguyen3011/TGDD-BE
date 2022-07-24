@@ -1,8 +1,7 @@
 package com.project.tgdd_be.entities;
 
 import java.sql.Date;
-import java.util.Set;
-
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.project.tgdd_be.model.dto.OrderDTO;
 
 import lombok.Data;
 
@@ -51,7 +51,7 @@ public class Order  {
 
 	@JsonManagedReference
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
-	private Set<OrderDetail> orderdetail;
+	private List<OrderDetail> orderdetail;
 
 	public Order() {
 	}
@@ -68,6 +68,17 @@ public class Order  {
 		this.totalPrice = totalPrice;
 		this.shippingStatus = shippingStatus;
 
+	}public Order(OrderDTO orderdto) {
+		this.customerName=orderdto.getCustomerName();
+		this.orderDate = orderdto.getOrderDate();
+		this.address = orderdto.getAddress();
+		this.phoneNumber = orderdto.getPhoneNumber();
+		this.email = orderdto.getEmail();
+		this.shippingType = orderdto.getShippingType();
+		this.totalPrice = orderdto.getTotalPrice();
+		this.shippingStatus = orderdto.getShippingStatus();
 	}
+	
+	
 
 }

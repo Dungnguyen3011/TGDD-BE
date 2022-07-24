@@ -1,6 +1,8 @@
 package com.project.tgdd_be.model.dto;
 
 import java.sql.Date;
+import java.util.List;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -40,5 +42,6 @@ public class OrderDTO {
 
 	private Boolean shippingStatus;
 
+	private List<OrderDetailDTO> orderdetailList;
 	
 }
