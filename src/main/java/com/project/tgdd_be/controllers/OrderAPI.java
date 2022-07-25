@@ -42,10 +42,9 @@ public class OrderAPI {
 	}
 
 	public Order dtoToOrder(OrderDTO orderDTO) {		
-		LocalDateTime current = LocalDateTime.now();
-	    java.sql.Date sqlDate = java.sql.Date.valueOf(current.toLocalDate());
+		
 	    orderDTO.setShippingStatus(true);
-		Order newOrder = new Order(orderDTO.getOrderId(),orderDTO.getCustomerName(),sqlDate,orderDTO.getAddress(),orderDTO.getPhoneNumber(),orderDTO.getEmail(),orderDTO.getShippingType(),orderDTO.getTotalPrice(),orderDTO.getShippingStatus());
+		Order newOrder = new Order(orderDTO.getOrderId(),orderDTO.getCustomerName(),orderDTO.getOrderDate(),orderDTO.getAddress(),orderDTO.getPhoneNumber(),orderDTO.getEmail(),orderDTO.getShippingType(),orderDTO.getTotalPrice(),orderDTO.getShippingStatus());
 		return newOrder;
 	}
 	
