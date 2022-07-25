@@ -99,14 +99,6 @@ public class ProductAPI {
 			return ResponseEntity.ok(sv.save(pr));			
 	}	
 	
-	@PutMapping("/api/deleteProduct/{id}")
-	public ResponseEntity<?> deleteProduct(@PathVariable Integer id) {
-		ProductDTO pr = sv.getProductDtobyID(id);
-		Product pro = dtotoProduct(pr);
-		pro.setStatus(false);
-		return ResponseEntity.ok(sv.save(pro));
-	}
-
 	@GetMapping("/api/product/{id}")
 	public ResponseEntity<?> getProductById(@PathVariable Integer id) {
 		ProductDTO pr = sv.getProductDtobyID(id);
@@ -123,6 +115,8 @@ public class ProductAPI {
 	public ResponseEntity<?> getProductByManufacturer(@PathVariable Integer id) {
 		List<ProductDTO> pr = sv.listProductByManufacturer(id);
 		return ResponseEntity.ok(pr);
+	}
+	
 	@PutMapping("/api/admin/deleteProduct/{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Integer id){
 			ProductDTO pr = sv.getProductDtobyID(id);
