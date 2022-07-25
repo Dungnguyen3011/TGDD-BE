@@ -1,6 +1,7 @@
 package com.project.tgdd_be.controllers;
 
-import java.time.LocalDateTime;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -41,15 +42,17 @@ public class OrderAPI {
 		return ResponseEntity.ok(os.listOrderBySpecificPhone(query));
 	}
 
-	public Order dtoToOrder(OrderDTO orderDTO) {		
-		
-	    orderDTO.setShippingStatus(true);
-		Order newOrder = new Order(orderDTO.getOrderId(),orderDTO.getCustomerName(),orderDTO.getOrderDate(),orderDTO.getAddress(),orderDTO.getPhoneNumber(),orderDTO.getEmail(),orderDTO.getShippingType(),orderDTO.getTotalPrice(),orderDTO.getShippingStatus());
+	public Order dtoToOrder(OrderDTO orderDTO) throws ParseException {		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");		
+		String date1 = formatter.format(orderDTO.getOrderDate());
+		java.util.Date date2 = formatter.parse(date1);
+	    java.sql.Date sqlDate = new java.sql.Date(date2.getTime());
+		Order newOrder = new Order(orderDTO.getOrderId(),orderDTO.getCustomerName(),sqlDate,orderDTO.getAddress(),orderDTO.getPhoneNumber(),orderDTO.getEmail(),orderDTO.getShippingType(),orderDTO.getTotalPrice(),orderDTO.getShippingStatus());
 		return newOrder;
 	}
 	
 	@PutMapping("/api/updateShippingStatus/{id}")
-	public ResponseEntity<?> updateShippingStatus(@PathVariable Integer id) {
+	public ResponseEntity<?> updateShippingStatus(@PathVariable Integer id) throws ParseException {
 		OrderDTO dto = os.getOrderDTOById(id);
 		Order order = dtoToOrder(dto); 
 		order.setShippingStatus(false);
@@ -58,7 +61,7 @@ public class OrderAPI {
 		
 	@PostMapping("/api/createOrder")
 	public String createOrder(@Valid @RequestBody OrderDTO orderDTO) {
-		os.saveNewORder(orderDTO);
+		os.saveNewOrder(orderDTO);
 		return "oke";
 	}
 

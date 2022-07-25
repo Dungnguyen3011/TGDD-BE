@@ -51,7 +51,7 @@ public class Order  {
 
 	@JsonManagedReference
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
-	private List<OrderDetail> orderdetail;
+	private List<OrderDetail> orderDetail;
 
 	public Order() {
 	}

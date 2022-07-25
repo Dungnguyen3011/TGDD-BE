@@ -42,6 +42,6 @@ public class OrderDTO {
 
 	private Boolean shippingStatus;
 
-	private List<OrderDetailDTO> orderdetailList;
+	private List<OrderDetailDTO> orderDetailList;
 	
 }
