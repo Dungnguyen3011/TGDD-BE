@@ -37,7 +37,7 @@ public class OrderAPI {
 		return ResponseEntity.ok(lo);
 	}
 
-	@GetMapping("/api/listOrderBySpecificPhone/{query}")
+	@GetMapping("/api/viewhistory/{query}")
 	public ResponseEntity<?> getListOrderBySpecificPhone(@PathVariable String query) {
 		return ResponseEntity.ok(os.listOrderBySpecificPhone(query));
 	}
@@ -59,7 +59,7 @@ public class OrderAPI {
 		return ResponseEntity.ok(os.save(order));
 	}
 		
-	@PostMapping("/api/admin/createOrder")
+	@PostMapping("/api/checkout")
 	public ResponseEntity<?> createOrder(@Valid @RequestBody OrderDTO orderDTO) {
 		return ResponseEntity.ok(os.saveNewOrder(orderDTO));
 	}
