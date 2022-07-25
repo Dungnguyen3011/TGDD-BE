@@ -110,5 +110,16 @@ public class ProductServiceImp implements ProductService {
 		return (int) repo.count();
 	}
 
+	@Override
+	public List<ProductDTO> searchProductsforCus(String query) {
+		List<ProductDTO> listdto = new ArrayList<>();		
+		List<Product> list = repo.searchProductforCus(query);
+		
+		for(Product item: list) {	
+			listdto.add(ProductMapper.toProductDTO(item));
+		}
+		return listdto;
+	}
+
 
 }

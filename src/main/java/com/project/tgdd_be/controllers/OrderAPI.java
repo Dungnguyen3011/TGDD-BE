@@ -1,6 +1,7 @@
 package com.project.tgdd_be.controllers;
 
-import java.time.LocalDateTime;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -24,7 +25,7 @@ public class OrderAPI {
 	@Autowired
 	private OrderService os;
 	
-	@GetMapping("/api/order")
+	@GetMapping("/api/admin/order")
 	public ResponseEntity<?> getAll() {
 		List<OrderDTO> lo = os.listAll();
 		return ResponseEntity.ok(lo);
@@ -41,26 +42,26 @@ public class OrderAPI {
 		return ResponseEntity.ok(os.listOrderBySpecificPhone(query));
 	}
 
-	public Order dtoToOrder(OrderDTO orderDTO) {		
-		LocalDateTime current = LocalDateTime.now();
-	    java.sql.Date sqlDate = java.sql.Date.valueOf(current.toLocalDate());
-	    orderDTO.setShippingStatus(true);
+	public Order dtoToOrder(OrderDTO orderDTO) throws ParseException {		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");		
+		String date1 = formatter.format(orderDTO.getOrderDate());
+		java.util.Date date2 = formatter.parse(date1);
+	    java.sql.Date sqlDate = new java.sql.Date(date2.getTime());
 		Order newOrder = new Order(orderDTO.getOrderId(),orderDTO.getCustomerName(),sqlDate,orderDTO.getAddress(),orderDTO.getPhoneNumber(),orderDTO.getEmail(),orderDTO.getShippingType(),orderDTO.getTotalPrice(),orderDTO.getShippingStatus());
 		return newOrder;
 	}
 	
-	@PutMapping("/api/updateShippingStatus/{id}")
-	public ResponseEntity<?> updateShippingStatus(@PathVariable Integer id) {
+	@PutMapping("/api/admin/updateShippingStatus/{id}")
+	public ResponseEntity<?> updateShippingStatus(@PathVariable Integer id) throws ParseException {
 		OrderDTO dto = os.getOrderDTOById(id);
 		Order order = dtoToOrder(dto); 
 		order.setShippingStatus(false);
 		return ResponseEntity.ok(os.save(order));
 	}
 		
-	@PostMapping("/api/createOrder")
-	public String createOrder(@Valid @RequestBody OrderDTO orderDTO) {
-		os.saveNewORder(orderDTO);
-		return "oke";
+	@PostMapping("/api/admin/createOrder")
+	public ResponseEntity<?> createOrder(@Valid @RequestBody OrderDTO orderDTO) {
+		return ResponseEntity.ok(os.saveNewOrder(orderDTO));
 	}
 
 }

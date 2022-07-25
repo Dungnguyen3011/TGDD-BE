@@ -38,7 +38,7 @@ public class StoreAPI {
 		return ResponseEntity.ok(sto);
 	}
 
-	@PostMapping("/api/store")
+	@PostMapping("/api/admin/store")
 	public ResponseEntity<?> createStore(@Valid @RequestBody StoreDTO store) {
 		Store st = dtoToStore(store);
 		return ResponseEntity.ok(stv.save(st));
@@ -50,14 +50,14 @@ public class StoreAPI {
 		return ResponseEntity.ok(st);
 	}
 
-	@PutMapping("api/updateStore/{id}")
+	@PutMapping("api/admin/updateStore/{id}")
 	public ResponseEntity<?> updateStore(@PathVariable Integer id, @RequestBody @Valid StoreDTO store) {
 		Store st = dtoToStore(store);
 		st.setStoreId(id);
 		return ResponseEntity.ok(stv.save(st));
 	}
 	
-	@PutMapping("/api/deleteStore/{id}")
+	@PutMapping("/api/admin/deleteStore/{id}")
 	public ResponseEntity<?> deleteStore(@PathVariable Integer id) {
 		StoreDTO st = stv.getStoreDTObyID(id);
 		Store sto = dtoToStore(st);
