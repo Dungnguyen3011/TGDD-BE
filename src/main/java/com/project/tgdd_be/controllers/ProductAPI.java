@@ -50,28 +50,32 @@ public class ProductAPI {
 		return pro;
 	}
 	
-	@GetMapping("/api/product")
+	@GetMapping("/api/admin/product")
 	public ResponseEntity<?> getAll(@RequestParam("page") int page,
 									@RequestParam("limit") int limit){
 		ProductPagingDTO result = new ProductPagingDTO();
 		result.setCurrentPage(page);
 		Pageable pageable =  PageRequest.of(page - 1, limit);
 		result.setItems(sv.listAll(pageable));
-		result.setTotalPage(null);
 		result.setTotalPage((int)Math.ceil((double)(sv.totalItems()) / limit));
 
 		return ResponseEntity.ok(result);
 	}
 	
-	@PostMapping("/api/product")
+	@PostMapping("/api/admin/product")
 	public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDTO product) {
 		Product pr = dtotoProduct(product);
 		return ResponseEntity.ok(sv.save(pr));
 	}
 		
-	@GetMapping("/search/{query}")
+	@GetMapping("/api/admin/search/{query}")
 	public ResponseEntity<?> searchProducts(@PathVariable String query){
 		return ResponseEntity.ok(sv.searchProducts(query));
+	}
+	
+	@GetMapping("/api/search/{query}")
+	public ResponseEntity<?> searchProductsforCus(@PathVariable String query){
+		return ResponseEntity.ok(sv.searchProductsforCus(query));
 	}
 	
 	@GetMapping("/api/productForCus")
@@ -86,14 +90,14 @@ public class ProductAPI {
 		return ResponseEntity.ok(pr);
 	}
 	
-	@PutMapping("/api/product/{id}")
+	@PutMapping("/api/admin/product/{id}")
 	public ResponseEntity<?> updateProduct(@PathVariable Integer id,@Valid @RequestBody ProductDTO product){
 			Product pr = dtotoProduct(product);
 			pr.setProductId(id);
 			return ResponseEntity.ok(sv.save(pr));			
 	}	
 	
-	@PutMapping("/api/deleteProduct/{id}")
+	@PutMapping("/api/admin/deleteProduct/{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Integer id){
 			ProductDTO pr = sv.getProductDtobyID(id);
 			Product pro = dtotoProduct(pr);

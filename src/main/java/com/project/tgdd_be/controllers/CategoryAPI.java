@@ -30,7 +30,7 @@ public class CategoryAPI {
 //		return cate;
 //	}
 	
-	@GetMapping("/api/category")
+	@GetMapping("/api/admin/category")
 	public ResponseEntity<?> getAll(){
 		List<CategoryDTO> cate= cs.listAllDTO();
 		return ResponseEntity.ok(cate);
@@ -42,13 +42,13 @@ public class CategoryAPI {
 		return ResponseEntity.ok(cate);
 	}
 	
-	@PostMapping("/api/category")
+	@PostMapping("/api/admin/category")
 	public ResponseEntity<?> createCategory(@RequestBody @Valid CategoryDTO cateDTO) {
 		Category cate = dtoToCategory(cateDTO);
 		return ResponseEntity.ok(cs.save(cate));
 	}
 	
-	@PutMapping("/api/category/{id}")
+	@PutMapping("/api/admin/category/{id}")
 	public ResponseEntity<?> updateCategory(@PathVariable Integer id, @RequestBody @Valid CategoryDTO cateDTO){
 		
 			Category cate = dtoToCategory(cateDTO);
@@ -57,7 +57,7 @@ public class CategoryAPI {
 		
 	}
 	
-	@PutMapping("/api/deleteCategory/{id}")
+	@PutMapping("/api/admin/deleteCategory/{id}")
 	public ResponseEntity<?> updateStatusCategory(@PathVariable Integer id) {
 		CategoryDTO cateDTO = cs.findCategoryById(id);
 		Category cate = dtoToCategory(cateDTO);

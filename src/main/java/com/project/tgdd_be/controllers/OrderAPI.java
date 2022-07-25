@@ -25,7 +25,7 @@ public class OrderAPI {
 	@Autowired
 	private OrderService os;
 	
-	@GetMapping("/api/order")
+	@GetMapping("/api/admin/order")
 	public ResponseEntity<?> getAll() {
 		List<OrderDTO> lo = os.listAll();
 		return ResponseEntity.ok(lo);
@@ -51,7 +51,7 @@ public class OrderAPI {
 		return newOrder;
 	}
 	
-	@PutMapping("/api/updateShippingStatus/{id}")
+	@PutMapping("/api/admin/updateShippingStatus/{id}")
 	public ResponseEntity<?> updateShippingStatus(@PathVariable Integer id) throws ParseException {
 		OrderDTO dto = os.getOrderDTOById(id);
 		Order order = dtoToOrder(dto); 
@@ -59,10 +59,9 @@ public class OrderAPI {
 		return ResponseEntity.ok(os.save(order));
 	}
 		
-	@PostMapping("/api/createOrder")
-	public String createOrder(@Valid @RequestBody OrderDTO orderDTO) {
-		os.saveNewOrder(orderDTO);
-		return "oke";
+	@PostMapping("/api/admin/createOrder")
+	public ResponseEntity<?> createOrder(@Valid @RequestBody OrderDTO orderDTO) {
+		return ResponseEntity.ok(os.saveNewOrder(orderDTO));
 	}
 
 }
