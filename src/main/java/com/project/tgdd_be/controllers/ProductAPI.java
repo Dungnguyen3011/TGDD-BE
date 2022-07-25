@@ -1,5 +1,6 @@
 package com.project.tgdd_be.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -84,9 +85,16 @@ public class ProductAPI {
 		return ResponseEntity.ok(pr);
 	}
 	
-	@GetMapping("/api/productByLocation/{id}")
-	public ResponseEntity<?> getProductFindByLocation(@PathVariable Integer id){
-		List<ProductDTO> pr= sv.listProductFindByLocation(id);
+	@GetMapping("/api/productByLocation")
+	public ResponseEntity<?> getProductFindByLocation(@RequestParam("locationId") int locationId,
+														@RequestParam("categoryId") int categoryId){
+		List<ProductDTO> pr = new ArrayList<>();
+		if(categoryId == -1) {
+			pr= sv.listProductFindByLocation(locationId);
+		}else {
+			pr= sv.filterByLocationAndCategory(locationId, categoryId);
+		}
+		
 		return ResponseEntity.ok(pr);
 	}
 	
