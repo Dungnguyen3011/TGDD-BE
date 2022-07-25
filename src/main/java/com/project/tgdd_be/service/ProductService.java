@@ -32,5 +32,7 @@ public interface ProductService {
 	public List<ProductDTO> listProductByCategory(Integer id);
 	
 	public List<ProductDTO> listProductByManufacturer(Integer id);
+	
+	public List<ProductDTO> filterByLocationAndCategory(Integer locationDd, Integer categoryid);
 }
 	

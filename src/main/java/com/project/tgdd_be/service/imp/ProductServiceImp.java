@@ -121,5 +121,16 @@ public class ProductServiceImp implements ProductService {
 		return listdto;
 	}
 
+	@Override
+	public List<ProductDTO> filterByLocationAndCategory(Integer locationDd, Integer CategoryId) {
+		List<ProductDTO> listdto = new ArrayList<>();		
+		List<Product> list = repo.listProductByLocationAndCategory(locationDd, CategoryId);
+		
+		for(Product item: list) {	
+			listdto.add(ProductMapper.toProductDTO(item));
+		}
+		return listdto;
+	}
+
 
 }
