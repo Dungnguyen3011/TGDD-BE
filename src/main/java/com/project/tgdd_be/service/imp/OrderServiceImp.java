@@ -111,7 +111,7 @@ public class OrderServiceImp implements OrderService {
 	public OrderDTO saveNewOrder(OrderDTO orderdto) {
 		Order order = new Order(orderdto);
 	    order.setOrderDate(date);
-		order.setShippingStatus(true);
+		order.setShippingStatus(false);
 		orderRepository.save(order);		
 		List<OrderDetail> listOrderDetail = new ArrayList<>();
 			if(orderdto.getOrderDetailList() != null) {
