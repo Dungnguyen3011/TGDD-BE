@@ -42,7 +42,6 @@ public class ProductServiceImp implements ProductService {
 
 	@Override
 	public ProductDTO getProductDtobyID(Integer id) {
-		//return repo.findById(id).get();
 		return ProductMapper.toProductDTO(repo.findById(id).get());
 	}
 
@@ -87,6 +86,28 @@ public class ProductServiceImp implements ProductService {
 	@Override
 	public int totalItems() {		
 		return (int) repo.count();
+	}
+
+	@Override
+	public List<ProductDTO> searchProductsforCus(String query) {
+		List<ProductDTO> listdto = new ArrayList<>();		
+		List<Product> list = repo.searchProductforCus(query);
+		
+		for(Product item: list) {	
+			listdto.add(ProductMapper.toProductDTO(item));
+		}
+		return listdto;
+	}
+
+	@Override
+	public List<ProductDTO> filterByLocationAndCategory(Integer locationDd, Integer CategoryId) {
+		List<ProductDTO> listdto = new ArrayList<>();		
+		List<Product> list = repo.listProductByLocationAndCategory(locationDd, CategoryId);
+		
+		for(Product item: list) {	
+			listdto.add(ProductMapper.toProductDTO(item));
+		}
+		return listdto;
 	}
 
 

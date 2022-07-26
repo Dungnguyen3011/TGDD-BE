@@ -23,8 +23,12 @@ public interface ProductService {
 	
 	public List<ProductDTO> searchProducts(String query);
 	
+	public List<ProductDTO> searchProductsforCus(String query);
+	
 	public List<ProductDTO> listAllForCus();
 	
 	public List<ProductDTO> listProductFindByLocation(Integer id);
+	
+	public List<ProductDTO> filterByLocationAndCategory(Integer locationDd, Integer categoryid);
 }
 	

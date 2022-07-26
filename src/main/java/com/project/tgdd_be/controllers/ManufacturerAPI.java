@@ -25,13 +25,13 @@ public class ManufacturerAPI {
 		return manufacturer;
 	}
 	//chay duoc roi
-	@GetMapping("/api/manufacturer")
+	@GetMapping("/api/admin/manufacturer")
 	public ResponseEntity<?> getAll(){
 		List<ManufacturerDTO> m= mv.listAll();
 		return ResponseEntity.ok(m);
 	}
 	
-	@PostMapping("/api/manufacturer")
+	@PostMapping("/api/admin/manufacturer")
 	public Manufacturer createManufacturer(@RequestBody  @Valid ManufacturerDTO manufacturerDTO) {
 		Manufacturer mn =  dtotoManufacturer(manufacturerDTO);
 		return mv.save(mn);
@@ -46,7 +46,7 @@ public class ManufacturerAPI {
 		
 	}
 	// chay duoc roi
-	@PutMapping("/api/updatemanufacturer/{id}")
+	@PutMapping("/api/admin/updatemanufacturer/{id}")
 	public ResponseEntity<?> updateManufacturer(@PathVariable Integer id, @RequestBody @Valid ManufacturerDTO manufacturer){
 		if(mv.getManufacturerbyID(id) != null) {
 			Manufacturer pr = dtotoManufacturer(manufacturer);
@@ -54,7 +54,7 @@ public class ManufacturerAPI {
 		}
 		return null;		
 	}
-	@PutMapping("/api/deleteManufacturer/{id}")
+	@PutMapping("/api/admin/deleteManufacturer/{id}")
 	public ResponseEntity<?> deleteStatusManufacturer(@PathVariable Integer id) throws ParseException {
 		ManufacturerDTO manuDTO = mv.findManufacturerById(id);
 		Manufacturer manu = dtotoManufacturer(manuDTO);
