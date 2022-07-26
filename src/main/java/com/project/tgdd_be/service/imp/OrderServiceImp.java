@@ -12,7 +12,6 @@ import com.project.tgdd_be.entities.OrderDetail;
 import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.model.dto.OrderDTO;
 import com.project.tgdd_be.model.dto.OrderDetailDTO;
-import com.project.tgdd_be.model.mapper.OrderDetailMapper;
 import com.project.tgdd_be.model.mapper.OrderMapper;
 import com.project.tgdd_be.repositories.OrderDetailRepository;
 import com.project.tgdd_be.repositories.OrderRepository;
@@ -111,7 +110,7 @@ public class OrderServiceImp implements OrderService {
 	public OrderDTO saveNewOrder(OrderDTO orderdto) {
 		Order order = new Order(orderdto);
 	    order.setOrderDate(date);
-		order.setShippingStatus(true);
+		order.setShippingStatus(false);
 		orderRepository.save(order);		
 		List<OrderDetail> listOrderDetail = new ArrayList<>();
 			if(orderdto.getOrderDetailList() != null) {
