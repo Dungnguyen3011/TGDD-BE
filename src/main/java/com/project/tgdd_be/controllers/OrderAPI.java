@@ -49,7 +49,7 @@ public class OrderAPI {
 	public ResponseEntity<?> updateShippingStatus(@PathVariable Integer id)  {
 		OrderDTO dto = os.getOrderDTOById(id);
 		Order order = dtoToOrder(dto); 
-		order.setShippingStatus(false);
+		order.setShippingStatus(true);
 		return ResponseEntity.ok(os.save(order));
 	}
 		
