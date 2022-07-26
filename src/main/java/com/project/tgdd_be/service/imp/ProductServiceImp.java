@@ -110,5 +110,16 @@ public class ProductServiceImp implements ProductService {
 		return listdto;
 	}
 
+	@Override
+	public List<ProductDTO> listSale() {
+		List<ProductDTO> listdto = new ArrayList<>();		
+		List<Product> list = repo.listSale();
+		
+		for(Product item: list) {	
+			listdto.add(ProductMapper.toProductDTO(item));
+		}
+		return listdto;
+	}
+
 
 }

@@ -85,6 +85,12 @@ public class ProductAPI {
 		return ResponseEntity.ok(pr);
 	}
 	
+	@GetMapping("/api/productSale")
+	public ResponseEntity<?> getAllSale(){
+		List<ProductDTO> pr= sv.listSale();
+		return ResponseEntity.ok(pr);
+	}
+	
 	@GetMapping("/api/productByLocation")
 	public ResponseEntity<?> getProductFindByLocation(@RequestParam("locationId") int locationId,
 														@RequestParam("categoryId") int categoryId){

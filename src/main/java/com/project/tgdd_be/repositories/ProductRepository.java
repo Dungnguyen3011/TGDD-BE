@@ -25,6 +25,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 			"p.status = 'true' ")
 	List<Product> listProductForCus();
 	
+	@Query(value ="SELECT p FROM Product p WHERE "+
+			"p.status = 'true' AND p.salePrice = 99 ")
+	List<Product> listSale();
+	
 	@Query(value ="SELECT p FROM Product p WHERE p.store.location.locationId = :id")
 	List<Product> listProductByLocation(@Param("id") Integer id);
 	

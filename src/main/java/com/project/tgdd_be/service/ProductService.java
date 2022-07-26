@@ -27,6 +27,8 @@ public interface ProductService {
 	
 	public List<ProductDTO> listAllForCus();
 	
+	public List<ProductDTO> listSale();
+	
 	public List<ProductDTO> listProductFindByLocation(Integer id);
 	
 	public List<ProductDTO> filterByLocationAndCategory(Integer locationDd, Integer categoryid);
