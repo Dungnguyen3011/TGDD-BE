@@ -18,5 +18,7 @@ public interface StoreService {
 	public List<StoreDTO> listStoreFindByLocation(Integer id);
 	
 	public Store getStorebyID(Integer id);
+	
+	public List<StoreDTO> listAllForCus();
 
 }

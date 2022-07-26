@@ -65,5 +65,11 @@ public class StoreAPI {
 		return ResponseEntity.ok(stv.save(sto));
 	}
 	
+	@GetMapping("/api/storeForCus")
+	public ResponseEntity<?> getAllForCus(){
+		List<StoreDTO> st = stv.listAllForCus();
+		return ResponseEntity.ok(st);
+	}
+	
 
 }

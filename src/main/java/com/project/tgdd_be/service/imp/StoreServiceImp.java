@@ -59,4 +59,14 @@ public class StoreServiceImp implements StoreService {
 		return storeRep.findById(id).get();
 		
 	}
+	
+	@Override
+	public List<StoreDTO> listAllForCus() {
+		List<StoreDTO> listDto = new ArrayList<StoreDTO>();
+		List<Store> list = storeRep.listStoreForCus();
+		for(Store item: list) {
+			listDto.add(StoreMapper.toStoreDTO(item));
+		}
+		return listDto;
+	}
 }

@@ -11,5 +11,8 @@ import com.project.tgdd_be.entities.Store;
 public interface StoreRepository extends JpaRepository<Store, Integer> {
 	@Query(value = "select s from Store s where  " + "s.location.locationId = :id and s.status = 'TRUE'")
 	List<Store> listStoreByLocation(@Param("id") Integer id);
+	
+	@Query(value = "select s from Store s where s.status = 'true'")
+	List<Store> listStoreForCus();
 
 }
