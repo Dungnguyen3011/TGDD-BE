@@ -117,14 +117,11 @@ public class OrderServiceImp implements OrderService {
 	@Override
 	public Order saveNewOrder(OrderDTO orderdto) {
 		Order order = new Order(orderdto);
-
+	    order.setOrderDate(date);
 		order.setShippingStatus(true);
-		orderRepository.save(order);
-		
-		
+		orderRepository.save(order);		
 		List<OrderDetail> listOrderDetail = new ArrayList<>();
-		
-		if(orderdto.getOrderDetailList() != null) {
+			if(orderdto.getOrderDetailList() != null) {
 			for(OrderDetailDTO orderdetailDTO : orderdto.getOrderDetailList()) {
 				OrderDetail orderDetail = new OrderDetail();
 				Product product = new Product();
@@ -132,17 +129,13 @@ public class OrderServiceImp implements OrderService {
 				orderDetail.setProduct(product);
 				orderDetail.setOrder(order);
 				orderDetail.setPrice(orderdetailDTO.getUnitPrice());
-				orderDetail.setQuantity(orderdetailDTO.getQuantity());
-				
+				orderDetail.setQuantity(orderdetailDTO.getQuantity());				
 				listOrderDetail.add(orderDetail);
-			}
-			
+			}			
 			orderDetailRepo.saveAll(listOrderDetail);
-		}
-		
-		order.setOrderDetail(listOrderDetail);
-		emailsv.send(orderdto.getEmail(), buildEmail(orderdto.getCustomerName(),"" ));
-		
+		}		
+		order.setOrderDetailList(listOrderDetail);
+		emailsv.send(orderdto.getEmail(), buildEmail(orderdto.getCustomerName(),"" ));		
 		return order;
 	}
 	
