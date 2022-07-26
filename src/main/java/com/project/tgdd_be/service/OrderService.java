@@ -25,6 +25,6 @@ public interface OrderService {
 	
 	public Order updateShippingStatus(Integer id, Order order);
 	
-	public Order saveNewOrder(OrderDTO orderdto);
+	public OrderDTO saveNewOrder(OrderDTO orderdto);
 		
 }

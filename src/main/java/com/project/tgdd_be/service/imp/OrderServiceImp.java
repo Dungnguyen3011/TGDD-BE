@@ -44,13 +44,6 @@ public class OrderServiceImp implements OrderService {
 		for (Order order : listOrder) {
 			OrderDTO dto = new OrderDTO();
 			dto = OrderMapper.toOrderDTO(order);
-			
-			List<OrderDetailDTO> listDetaildto = new ArrayList<>();
-			List<OrderDetail> listDetail = orderDetailRepo.ListDetailByOrderId(order.getOrderId());
-			for(OrderDetail orderdetail : listDetail) {
-				listDetaildto.add(OrderDetailMapper.toOrderDeatilDTO(orderdetail));
-			}
-			dto.setOrderDetailList(listDetaildto);
 			listOrderDTO.add(dto);
 		}
 		return listOrderDTO;
@@ -115,16 +108,13 @@ public class OrderServiceImp implements OrderService {
 
 
 	@Override
-	public Order saveNewOrder(OrderDTO orderdto) {
+	public OrderDTO saveNewOrder(OrderDTO orderdto) {
 		Order order = new Order(orderdto);
-
+	    order.setOrderDate(date);
 		order.setShippingStatus(true);
-		orderRepository.save(order);
-		
-		
+		orderRepository.save(order);		
 		List<OrderDetail> listOrderDetail = new ArrayList<>();
-		
-		if(orderdto.getOrderDetailList() != null) {
+			if(orderdto.getOrderDetailList() != null) {
 			for(OrderDetailDTO orderdetailDTO : orderdto.getOrderDetailList()) {
 				OrderDetail orderDetail = new OrderDetail();
 				Product product = new Product();
@@ -132,18 +122,14 @@ public class OrderServiceImp implements OrderService {
 				orderDetail.setProduct(product);
 				orderDetail.setOrder(order);
 				orderDetail.setPrice(orderdetailDTO.getUnitPrice());
-				orderDetail.setQuantity(orderdetailDTO.getQuantity());
-				
+				orderDetail.setQuantity(orderdetailDTO.getQuantity());				
 				listOrderDetail.add(orderDetail);
-			}
-			
+			}			
 			orderDetailRepo.saveAll(listOrderDetail);
-		}
-		
-		order.setOrderDetail(listOrderDetail);
-		emailsv.send(orderdto.getEmail(), buildEmail(orderdto.getCustomerName(),"" ));
-		
-		return order;
+		}		
+		order.setOrderDetailList(listOrderDetail);
+		emailsv.send(orderdto.getEmail(), buildEmail(orderdto.getCustomerName(),"" ));		
+		return OrderMapper.toOrderDTO(order);
 	}
 	
 	private String buildEmail(String name, String link) {
