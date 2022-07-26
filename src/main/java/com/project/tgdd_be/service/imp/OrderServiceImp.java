@@ -44,13 +44,6 @@ public class OrderServiceImp implements OrderService {
 		for (Order order : listOrder) {
 			OrderDTO dto = new OrderDTO();
 			dto = OrderMapper.toOrderDTO(order);
-			
-			List<OrderDetailDTO> listDetaildto = new ArrayList<>();
-			List<OrderDetail> listDetail = orderDetailRepo.ListDetailByOrderId(order.getOrderId());
-			for(OrderDetail orderdetail : listDetail) {
-				listDetaildto.add(OrderDetailMapper.toOrderDeatilDTO(orderdetail));
-			}
-			dto.setOrderDetailList(listDetaildto);
 			listOrderDTO.add(dto);
 		}
 		return listOrderDTO;
@@ -115,7 +108,7 @@ public class OrderServiceImp implements OrderService {
 
 
 	@Override
-	public Order saveNewOrder(OrderDTO orderdto) {
+	public OrderDTO saveNewOrder(OrderDTO orderdto) {
 		Order order = new Order(orderdto);
 	    order.setOrderDate(date);
 		order.setShippingStatus(true);
@@ -136,7 +129,7 @@ public class OrderServiceImp implements OrderService {
 		}		
 		order.setOrderDetailList(listOrderDetail);
 		emailsv.send(orderdto.getEmail(), buildEmail(orderdto.getCustomerName(),"" ));		
-		return order;
+		return OrderMapper.toOrderDTO(order);
 	}
 	
 	private String buildEmail(String name, String link) {
