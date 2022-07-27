@@ -16,7 +16,7 @@ import lombok.Setter;
 public class ProductDTO {
 	private Integer productId;
 	
-	@Size(min=10, message = "Product name must have at least 5 character")
+	@Size(min=5, message = "Product name must have at least 5 character")
 	@NotEmpty(message = "Product name can not be empty")
 	private String productName;
 	
