@@ -81,7 +81,7 @@ public class ProductAPI {
 		return ResponseEntity.ok(sv.searchProductsforCus(query));
 	}
 	
-	@GetMapping("/api/productForCus")
+	@GetMapping("S")
 	public ResponseEntity<?> getAllForCus() {
 		List<ProductDTO> pr = sv.listAllForCus();
 		return ResponseEntity.ok(pr);
@@ -152,7 +152,7 @@ public class ProductAPI {
 
 	@GetMapping("/api/home")
 	public String home() {
-		return "https://react-tgdd.vercel.app/";
+		return "hello";
 	}
 
 }
