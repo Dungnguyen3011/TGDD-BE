@@ -150,7 +150,7 @@ public class ProductAPI {
 		return "https://react-tgdd.vercel.app/admin";
 	}
 
-	@GetMapping("/api/home")
+	@GetMapping("/api/home123")
 	public String home() {
 		return "hello";
 	}
