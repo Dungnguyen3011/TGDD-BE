@@ -120,7 +120,7 @@ public class OrderServiceImp implements OrderService {
 				product = repo.findById(orderdetailDTO.getProductId()).get();
 				orderDetail.setProduct(product);
 				orderDetail.setOrder(order);
-				orderDetail.setPrice(orderdetailDTO.getUnitPrice());
+				orderDetail.setPrice(product.getUnitPrice());
 				orderDetail.setQuantity(orderdetailDTO.getQuantity());				
 				listOrderDetail.add(orderDetail);
 			}			
