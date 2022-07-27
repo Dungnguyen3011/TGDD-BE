@@ -81,7 +81,7 @@ public class ProductAPI {
 		return ResponseEntity.ok(sv.searchProductsforCus(query));
 	}
 	
-	@GetMapping("S")
+	@GetMapping("/api/productForCus")
 	public ResponseEntity<?> getAllForCus() {
 		List<ProductDTO> pr = sv.listAllForCus();
 		return ResponseEntity.ok(pr);
