@@ -145,14 +145,5 @@ public class ProductAPI {
 			return ResponseEntity.ok(sv.save(pro));			
 	}
 	
-	@GetMapping("/api/admin")
-	public String admin() {
-		return "https://react-tgdd.vercel.app/admin";
-	}
-
-	@GetMapping("/api/home123")
-	public String home() {
-		return "helloDung";
-	}
 
 }
