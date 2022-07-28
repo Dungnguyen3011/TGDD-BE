@@ -152,7 +152,7 @@ public class ProductAPI {
 
 	@GetMapping("/api/home123")
 	public String home() {
-		return "hello";
+		return "helloDung";
 	}
 
 }
