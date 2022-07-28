@@ -145,9 +145,5 @@ public class ProductAPI {
 			return ResponseEntity.ok(sv.save(pro));			
 	}
 	
-	@GetMapping("/api/home")
-	public String home() {
-		return "helloDung22";
-	}
 
 }

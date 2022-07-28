@@ -31,26 +31,12 @@ public class CategoryAPI {
 	@Autowired
 	private ProductService sv;
 	
-	@Autowired
-	private ManufacturerService Msv;
-
-	@Autowired
-	private StoreService Ssv;
 	
 	public Category dtoToCategory(CategoryDTO cateDTO) {
 		Category cate = new Category(cateDTO.getCategoryId(), cateDTO.getCategoryName(),cateDTO.getStatus());
 		return cate;
 	}
 	
-	public Product dtotoProduct(ProductDTO productdto) {
-		Manufacturer manu = Msv.getManufacturerbyID2(productdto.getManufacturerId());
-		Category cate = cs.getCategorByID(productdto.getCategoryId());
-		Store sto = Ssv.getStorebyID(productdto.getStoreId());
-		Product pro = new Product(productdto.getProductId(), productdto.getProductName(), productdto.getQuantity(),
-				productdto.getUnitPrice(), productdto.getSalePrice(), productdto.getDescription(), productdto.getRate(),
-				productdto.getStatus(), productdto.getImage(), cate, manu, sto);
-		return pro;
-	}
 //	public Category dtoToStatusCategory(CategoryDTO cateDTO) {
 //		Category cate = new Category(cateDTO.getCategoryId(),cateDTO.getStatus());
 //		return cate;
@@ -76,9 +62,14 @@ public class CategoryAPI {
 	
 	@PutMapping("/api/admin/category/{id}")
 	public ResponseEntity<?> updateCategory(@PathVariable Integer id, @RequestBody @Valid CategoryDTO cateDTO){
-		
 			Category cate = dtoToCategory(cateDTO);
 			cate.setCategoryId(id);
+			if(cateDTO.getStatus()==false) {
+				for(Product product : sv.listProductByCategory(id)) {
+					product.setStatus(false);
+					sv.save(product);
+				}
+			}
 			return ResponseEntity.ok(cs.save(cate));
 		
 	}
@@ -88,10 +79,9 @@ public class CategoryAPI {
 		CategoryDTO cateDTO = cs.findCategoryById(id);
 		Category cate = dtoToCategory(cateDTO);
 		cate.setStatus(false);
-		for(ProductDTO dto : sv.listProductDTOByCategory(id)) {
-			Product pro = dtotoProduct(dto);
-			pro.setStatus(false);
-			sv.save(pro);
+		for(Product product : sv.listProductByCategory(id)) {
+			product.setStatus(false);
+			sv.save(product);
 		}
 		return ResponseEntity.ok(cs.save(cate));
 	}

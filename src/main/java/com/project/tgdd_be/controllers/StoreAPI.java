@@ -59,6 +59,12 @@ public class StoreAPI {
 	public ResponseEntity<?> updateStore(@PathVariable Integer id, @RequestBody @Valid StoreDTO store) {
 		Store st = dtoToStore(store);
 		st.setStoreId(id);
+		if(store.isStatus()==false) {
+			for(Product product : Psv.listProductByStore(id)) {
+				product.setStatus(false);
+				Psv.save(product);
+			}
+		}
 		return ResponseEntity.ok(stv.save(st));
 	}
 	

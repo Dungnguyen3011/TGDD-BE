@@ -56,6 +56,12 @@ public class ManufacturerAPI {
 	public ResponseEntity<?> updateManufacturer(@PathVariable Integer id, @RequestBody @Valid ManufacturerDTO manufacturer){
 		if(mv.getManufacturerbyID(id) != null) {
 			Manufacturer pr = dtotoManufacturer(manufacturer);
+			if(manufacturer.getStatus()==false) {
+				for(Product product : sv.listProductByManufacturer(id)) {
+					product.setStatus(false);
+					sv.save(product);
+				}
+			}
 			return ResponseEntity.ok(mv.save(pr));
 		}
 		return null;		
