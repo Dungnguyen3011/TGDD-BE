@@ -68,7 +68,7 @@ public class ProductServiceImp implements ProductService {
 	}
 
 	@Override
-	public List<ProductDTO> listProductFindByLocation(Integer id) {
+	public List<ProductDTO> listProductDTOFindByLocation(Integer id) {
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.listProductByLocation(id);
 		
@@ -84,7 +84,7 @@ public class ProductServiceImp implements ProductService {
 	}
 
 	@Override
-	public List<ProductDTO> listProductByCategory(Integer id) {
+	public List<ProductDTO> listProductDTOByCategory(Integer id) {
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.listProductByCategory(id);
 		
@@ -95,7 +95,7 @@ public class ProductServiceImp implements ProductService {
 	}
 
 	@Override
-	public List<ProductDTO> listProductByManufacturer(Integer id) {
+	public List<ProductDTO> listProductDTOByManufacturer(Integer id) {
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.listProductByManufacturer(id);
 		
@@ -152,6 +152,21 @@ public class ProductServiceImp implements ProductService {
 			listdto.add(ProductMapper.toProductDTO(item));
 		}
 		return listdto;
+	}
+
+	@Override
+	public List<Product> listProductByManufacturer(Integer id) {
+		return repo.listProductByManufacturer(id);
+	}
+
+	@Override
+	public List<Product> listProductByCategory(Integer id) {
+		return repo.listProductByCategory(id);
+	}
+
+	@Override
+	public List<Product> listProductByStore(Integer id) {
+		return repo.listProductByStore(id);
 	}
 
 

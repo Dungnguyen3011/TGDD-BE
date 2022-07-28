@@ -31,12 +31,18 @@ public interface ProductService {
 	
 	public List<ProductDTO> listSale99();
 	
-	public List<ProductDTO> listProductFindByLocation(Integer id);
+	public List<ProductDTO> listProductDTOFindByLocation(Integer id);
 	
-	public List<ProductDTO> listProductByCategory(Integer id);
+	public List<ProductDTO> listProductDTOByCategory(Integer id);
 	
-	public List<ProductDTO> listProductByManufacturer(Integer id);
+	public List<ProductDTO> listProductDTOByManufacturer(Integer id);
 	
 	public List<ProductDTO> filterByLocationAndCategory(Integer locationDd, Integer categoryid);
+	
+	public List<Product> listProductByManufacturer(Integer id);
+
+	public List<Product> listProductByCategory(Integer id);
+	
+	public List<Product> listProductByStore(Integer id);
 }
 	

@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.tgdd_be.entities.Location;
+import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.entities.Store;
 import com.project.tgdd_be.model.dto.StoreDTO;
 import com.project.tgdd_be.service.LocationService;
+import com.project.tgdd_be.service.ProductService;
 import com.project.tgdd_be.service.StoreService;
 
 @RestController
@@ -26,6 +28,9 @@ public class StoreAPI {
 	
 	@Autowired
 	private LocationService Lsv;
+	
+	@Autowired
+	private ProductService Psv;
 
 	public Store dtoToStore(StoreDTO storeDTO) {
 		Location lc = Lsv.getLocationbyID(storeDTO.getLocationId());
@@ -62,6 +67,10 @@ public class StoreAPI {
 		StoreDTO st = stv.getStoreDTObyID(id);
 		Store sto = dtoToStore(st);
 		sto.setStatus(false);
+		for(Product product : Psv.listProductByStore(id)) {
+			product.setStatus(false);
+			Psv.save(product);
+		}
 		return ResponseEntity.ok(stv.save(sto));
 	}
 	

@@ -44,4 +44,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	
 	@Query(value ="SELECT p FROM Product p WHERE p.store.location.locationId = :Lid AND p.category.categoryId = :Cid")
 	List<Product> listProductByLocationAndCategory(@Param("Lid") Integer LId, @Param("Cid") Integer CId);
+	
+	@Query(value ="SELECT p FROM Product p WHERE p.store.storeId = :id")
+	List<Product> listProductByStore(@Param("id") Integer id);
 }

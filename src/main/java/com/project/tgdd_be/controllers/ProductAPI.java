@@ -104,7 +104,7 @@ public class ProductAPI {
 														@RequestParam("categoryId") int categoryId){
 		List<ProductDTO> pr = new ArrayList<>();
 		if(categoryId == -1) {
-			pr= sv.listProductFindByLocation(locationId);
+			pr= sv.listProductDTOFindByLocation(locationId);
 		}else {
 			pr= sv.filterByLocationAndCategory(locationId, categoryId);
 		}
@@ -127,13 +127,13 @@ public class ProductAPI {
 
 	@GetMapping("/api/productByCategory/{id}")
 	public ResponseEntity<?> getProductByCategory(@PathVariable Integer id) {
-		List<ProductDTO> pr = sv.listProductByCategory(id);
+		List<ProductDTO> pr = sv.listProductDTOByCategory(id);
 		return ResponseEntity.ok(pr);
 	}
 
 	@GetMapping("/api/productByManufacturer/{id}")
 	public ResponseEntity<?> getProductByManufacturer(@PathVariable Integer id) {
-		List<ProductDTO> pr = sv.listProductByManufacturer(id);
+		List<ProductDTO> pr = sv.listProductDTOByManufacturer(id);
 		return ResponseEntity.ok(pr);
 	}
 	

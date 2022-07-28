@@ -14,12 +14,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.project.tgdd_be.entities.Manufacturer;
+import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.model.dto.ManufacturerDTO;
 import com.project.tgdd_be.service.ManufacturerService;
+import com.project.tgdd_be.service.ProductService;
 @RestController
 public class ManufacturerAPI {
 	@Autowired
 	private ManufacturerService mv;
+	
+	@Autowired
+	private ProductService sv;
+	
 	public Manufacturer dtotoManufacturer(ManufacturerDTO manufacturerDTO) {
 		Manufacturer manufacturer = new Manufacturer(manufacturerDTO.getManufacturerId(), manufacturerDTO.getManufacturerName(), manufacturerDTO.getStatus());
 		return manufacturer;
@@ -59,6 +65,10 @@ public class ManufacturerAPI {
 		ManufacturerDTO manuDTO = mv.findManufacturerById(id);
 		Manufacturer manu = dtotoManufacturer(manuDTO);
 		manu.setStatus(false);
+		for(Product product : sv.listProductByManufacturer(id)) {
+			product.setStatus(false);
+			sv.save(product);
+		}
 		return ResponseEntity.ok(mv.save(manu));
 	}
 }
