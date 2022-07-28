@@ -12,14 +12,19 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.project.tgdd_be.entities.Category;
+import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.model.dto.CategoryDTO;
 import com.project.tgdd_be.service.CategoryService;
+import com.project.tgdd_be.service.ProductService;
 
 @RestController
 public class CategoryAPI {
 	
 	@Autowired
 	private CategoryService cs;
+	
+	@Autowired
+	private ProductService sv;
 	
 	public Category dtoToCategory(CategoryDTO cateDTO) {
 		Category cate = new Category(cateDTO.getCategoryId(), cateDTO.getCategoryName(),cateDTO.getStatus());
@@ -62,6 +67,10 @@ public class CategoryAPI {
 		CategoryDTO cateDTO = cs.findCategoryById(id);
 		Category cate = dtoToCategory(cateDTO);
 		cate.setStatus(false);
+		for(Product product : sv.listProductByCategory(id)) {
+			product.setStatus(false);
+			sv.save(product);
+		}
 		return ResponseEntity.ok(cs.save(cate));
 	}
 	

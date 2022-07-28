@@ -121,5 +121,10 @@ public class ProductServiceImp implements ProductService {
 		return listdto;
 	}
 
+	@Override
+	public List<Product> listProductByCategory(Integer id) {
+		return repo.listProductByCategory(id);
+	}
+
 
 }
