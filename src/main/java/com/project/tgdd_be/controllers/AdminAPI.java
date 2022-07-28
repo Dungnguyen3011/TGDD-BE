@@ -13,12 +13,12 @@ public class AdminAPI {
 	
 	@GetMapping("/api/admin")
 	public void admin(HttpServletResponse res) throws IOException {
-		res.sendRedirect("https://react-tgdd.vercel.app/admin");
+		res.sendRedirect("https://react-tgdd.vercel.app/admin/");
 	}
 
-//	@GetMapping("/api/home")
-//	public String home() {
-//		URI uri = https://react-tgdd.vercel.app/admin;
-//		return  Response.temporaryRedirect(uri).build();
-//	}
+	@GetMapping("/api/home")
+	public String home() {
+		URI uri = https:\/\/react-tgdd.vercel.app/admin;
+		return  Response.temporaryRedirect(uri).build();
+	}
 }
