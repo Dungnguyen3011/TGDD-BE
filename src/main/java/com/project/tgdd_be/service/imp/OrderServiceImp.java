@@ -123,6 +123,10 @@ public class OrderServiceImp implements OrderService {
 				orderDetail.setPrice(orderdetailDTO.getUnitPrice());
 				orderDetail.setQuantity(orderdetailDTO.getQuantity());				
 				listOrderDetail.add(orderDetail);
+				
+				int newquantity = product.getQuantity() - orderdetailDTO.getQuantity();
+				product.setQuantity(newquantity);
+				repo.save(product);
 			}			
 			orderDetailRepo.saveAll(listOrderDetail);
 		}		
