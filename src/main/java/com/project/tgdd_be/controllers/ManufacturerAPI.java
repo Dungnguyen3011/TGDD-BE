@@ -30,7 +30,7 @@ public class ManufacturerAPI {
 		Manufacturer manufacturer = new Manufacturer(manufacturerDTO.getManufacturerId(), manufacturerDTO.getManufacturerName(), manufacturerDTO.getStatus());
 		return manufacturer;
 	}
-	//chay duoc roi
+	
 	@GetMapping("/api/admin/manufacturer")
 	public ResponseEntity<?> getAll(){
 		List<ManufacturerDTO> m= mv.listAll();
@@ -44,14 +44,13 @@ public class ManufacturerAPI {
 		
 	}
 	
-	// chay duoc roi
 	@GetMapping("/api/manufacturerForCus")
 	public ResponseEntity<?> getAllForCus(){
 		List<ManufacturerDTO> m= mv.listManufacturerForCus();
 		return ResponseEntity.ok(m);
 		
 	}
-	// chay duoc roi
+
 	@PutMapping("/api/admin/updatemanufacturer/{id}")
 	public ResponseEntity<?> updateManufacturer(@PathVariable Integer id, @RequestBody @Valid ManufacturerDTO manufacturer){
 		if(mv.getManufacturerbyID(id) != null) {

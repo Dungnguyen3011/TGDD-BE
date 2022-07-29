@@ -47,13 +47,6 @@ public class Category {
 		super();
 	}
 
-
-
-//	public Category(Integer categoryId, Boolean status) {
-//		super();
-//		this.categoryId = categoryId;
-//		this.status = status;
-//	}
 	
 	
 
