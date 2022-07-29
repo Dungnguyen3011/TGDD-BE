@@ -30,10 +30,6 @@ public class CategoryAPI {
 		Category cate = new Category(cateDTO.getCategoryId(), cateDTO.getCategoryName(),cateDTO.getStatus());
 		return cate;
 	}
-//	public Category dtoToStatusCategory(CategoryDTO cateDTO) {
-//		Category cate = new Category(cateDTO.getCategoryId(),cateDTO.getStatus());
-//		return cate;
-//	}
 	
 	@GetMapping("/api/admin/category")
 	public ResponseEntity<?> getAll(){
