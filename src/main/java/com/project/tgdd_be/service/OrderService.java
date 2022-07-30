@@ -17,13 +17,9 @@ public interface OrderService {
 	
 	public OrderDTO getOrderDTOById(Integer id);
 	
-	public OrderDTO getOrderByPhoneNumber(String phoneNumber);
-	
 	public List<OrderDTO> listAllForcus();
 		
 	public List<OrderDTO> listOrderBySpecificPhone(String query);
-	
-	public Order updateShippingStatus(Integer id, Order order);
 	
 	public OrderDTO saveNewOrder(OrderDTO orderdto);
 		

@@ -12,7 +12,6 @@ import com.project.tgdd_be.entities.OrderDetail;
 import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.model.dto.OrderDTO;
 import com.project.tgdd_be.model.dto.OrderDetailDTO;
-import com.project.tgdd_be.model.mapper.OrderDetailMapper;
 import com.project.tgdd_be.model.mapper.OrderMapper;
 import com.project.tgdd_be.repositories.OrderDetailRepository;
 import com.project.tgdd_be.repositories.OrderRepository;
@@ -72,22 +71,6 @@ public class OrderServiceImp implements OrderService {
 	@Override
 	public Order save(Order order) {
 		return orderRepository.save(order);
-	}
-
-	@Override
-	public Order updateShippingStatus(Integer id, Order order) {
-		if (orderRepository.findById(id).isPresent()) {
-			Order existOrder = orderRepository.findById(id).get();		
-			Order updateOrder = orderRepository.save(existOrder);
-			return updateOrder;
-		} else {
-			return null;
-		}
-	}
-
-	@Override
-	public OrderDTO getOrderByPhoneNumber(String phoneNumber) {
-		return OrderMapper.toOrderDTO(orderRepository.findByPhoneNumber(phoneNumber));
 	}
 
 	@Override

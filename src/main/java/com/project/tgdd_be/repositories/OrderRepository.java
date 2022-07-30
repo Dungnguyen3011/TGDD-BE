@@ -16,5 +16,4 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 			+ " o.shippingStatus = 'true' ")
 	List<Order> listOrderForCus();
 	
-	public Order findByPhoneNumber(String phoneNumber);
 }
