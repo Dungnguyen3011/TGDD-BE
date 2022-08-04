@@ -55,7 +55,7 @@ public class StoreAPI {
 		return ResponseEntity.ok(st);
 	}
 
-	@PutMapping("api/admin/updateStore/{id}")
+	@PutMapping("api/admin/store/{id}")
 	public ResponseEntity<?> updateStore(@PathVariable Integer id, @RequestBody @Valid StoreDTO store) {
 		Store st = dtoToStore(store);
 		st.setStoreId(id);
