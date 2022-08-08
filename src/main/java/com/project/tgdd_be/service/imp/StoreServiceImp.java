@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.tgdd_be.repositories.StoreRepository;
 import com.project.tgdd_be.service.StoreService;
@@ -13,6 +14,7 @@ import com.project.tgdd_be.model.dto.StoreDTO;
 import com.project.tgdd_be.model.mapper.StoreMapper;
 
 @Service
+@Transactional
 public class StoreServiceImp implements StoreService {
 	@Autowired
 	private StoreRepository storeRep;

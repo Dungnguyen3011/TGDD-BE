@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.tgdd_be.entities.Location;
 import com.project.tgdd_be.model.dto.LocationDTO;
@@ -13,6 +14,7 @@ import com.project.tgdd_be.repositories.LocationRepository;
 import com.project.tgdd_be.service.LocationService;
 
 @Service
+@Transactional
 public class LocationServiceImp implements LocationService {
 	
 	@Autowired

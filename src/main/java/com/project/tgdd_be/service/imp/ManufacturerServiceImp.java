@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.tgdd_be.entities.Manufacturer;
 import com.project.tgdd_be.model.dto.ManufacturerDTO;
@@ -13,6 +14,7 @@ import com.project.tgdd_be.repositories.ManufacturerRepository;
 import com.project.tgdd_be.service.ManufacturerService;
 
 @Service
+@Transactional
 public class ManufacturerServiceImp implements ManufacturerService {
 	@Autowired
 	private ManufacturerRepository Mrepo;

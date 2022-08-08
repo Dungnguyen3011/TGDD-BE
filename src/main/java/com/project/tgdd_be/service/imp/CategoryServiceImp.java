@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.tgdd_be.entities.Category;
 import com.project.tgdd_be.model.dto.CategoryDTO;
@@ -13,6 +14,7 @@ import com.project.tgdd_be.repositories.CategoryRepository;
 import com.project.tgdd_be.service.CategoryService;
 
 @Service
+@Transactional
 public class CategoryServiceImp implements CategoryService{
 	@Autowired
 	private CategoryRepository categoryRep;

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.tgdd_be.entities.Order;
 import com.project.tgdd_be.entities.OrderDetail;
@@ -20,6 +21,7 @@ import com.project.tgdd_be.service.EmailSenderService;
 import com.project.tgdd_be.service.OrderService;
 
 @Service
+@Transactional
 public class OrderServiceImp implements OrderService {
 	
 	Date date = new Date(System.currentTimeMillis());

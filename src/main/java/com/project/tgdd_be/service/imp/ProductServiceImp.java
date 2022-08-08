@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.tgdd_be.entities.Product;
 import com.project.tgdd_be.model.dto.ProductDTO;
@@ -14,6 +15,7 @@ import com.project.tgdd_be.repositories.ProductRepository;
 import com.project.tgdd_be.service.ProductService;
 
 @Service
+@Transactional
 public class ProductServiceImp implements ProductService {
 
 	@Autowired
