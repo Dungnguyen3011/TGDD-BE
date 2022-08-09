@@ -26,9 +26,8 @@ public class ProductServiceImp implements ProductService {
 	public List<ProductDTO> listAll(Pageable pageable) {
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.findAll(pageable).getContent();
-		for(Product item: list) {	
-			listdto.add(ProductMapper.toProductDTO(item));
-		}
+		list.forEach(v-> listdto.add(ProductMapper.toProductDTO(v)));
+
 		return listdto;
 	}
 
@@ -51,10 +50,8 @@ public class ProductServiceImp implements ProductService {
 	public List<ProductDTO> searchProducts(String query) {	
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.searchProduct(query);
-		
-		for(Product item: list) {	
-			listdto.add(ProductMapper.toProductDTO(item));
-		}
+		list.forEach(v-> listdto.add(ProductMapper.toProductDTO(v)));
+
 		return listdto;
 	}
 
@@ -62,10 +59,8 @@ public class ProductServiceImp implements ProductService {
 	public List<ProductDTO> listAllForCus() {
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.listProductForCus();
-		
-		for(Product item: list) {	
-			listdto.add(ProductMapper.toProductDTO(item));
-		}
+		list.forEach(v-> listdto.add(ProductMapper.toProductDTO(v)));
+
 		return listdto;
 	}
 
@@ -73,10 +68,8 @@ public class ProductServiceImp implements ProductService {
 	public List<ProductDTO> listProductDTOFindByLocation(Integer id) {
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.listProductByLocation(id);
+		list.forEach(v-> listdto.add(ProductMapper.toProductDTO(v)));
 		
-		for(Product item: list) {	
-			listdto.add(ProductMapper.toProductDTO(item));
-		}
 		return listdto;
 	}
 
@@ -89,10 +82,8 @@ public class ProductServiceImp implements ProductService {
 	public List<ProductDTO> listProductDTOByCategory(Integer id) {
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.listProductByCategory(id);
+		list.forEach(v-> listdto.add(ProductMapper.toProductDTO(v)));
 		
-		for(Product item: list) {	
-			listdto.add(ProductMapper.toProductDTO(item));
-		}
 		return listdto;
 	}
 
@@ -100,10 +91,8 @@ public class ProductServiceImp implements ProductService {
 	public List<ProductDTO> listProductDTOByManufacturer(Integer id) {
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.listProductByManufacturer(id);
+		list.forEach(v-> listdto.add(ProductMapper.toProductDTO(v)));
 		
-		for(Product item: list) {	
-			listdto.add(ProductMapper.toProductDTO(item));
-		}
 		return listdto;
 	}
 
@@ -116,10 +105,8 @@ public class ProductServiceImp implements ProductService {
 	public List<ProductDTO> searchProductsforCus(String query) {
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.searchProductforCus(query);
+		list.forEach(v-> listdto.add(ProductMapper.toProductDTO(v)));
 		
-		for(Product item: list) {	
-			listdto.add(ProductMapper.toProductDTO(item));
-		}
 		return listdto;
 	}
 
@@ -127,10 +114,8 @@ public class ProductServiceImp implements ProductService {
 	public List<ProductDTO> filterByLocationAndCategory(Integer locationDd, Integer CategoryId) {
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.listProductByLocationAndCategory(locationDd, CategoryId);
+		list.forEach(v-> listdto.add(ProductMapper.toProductDTO(v)));
 		
-		for(Product item: list) {	
-			listdto.add(ProductMapper.toProductDTO(item));
-		}
 		return listdto;
 	}
 
@@ -139,9 +124,7 @@ public class ProductServiceImp implements ProductService {
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.listProductSale();
 		
-		for(Product item: list) {	
-			listdto.add(ProductMapper.toProductDTO(item));
-		}
+		list.forEach(v-> listdto.add(ProductMapper.toProductDTO(v)));
 		return listdto;
 	}
 
@@ -150,9 +133,7 @@ public class ProductServiceImp implements ProductService {
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.listProductSale99();
 		
-		for(Product item: list) {	
-			listdto.add(ProductMapper.toProductDTO(item));
-		}
+		list.forEach(v-> listdto.add(ProductMapper.toProductDTO(v)));
 		return listdto;
 	}
 
