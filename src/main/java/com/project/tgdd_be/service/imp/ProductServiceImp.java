@@ -60,7 +60,7 @@ public class ProductServiceImp implements ProductService {
 	public List<ProductDTO> listAllForCus() {
 		List<ProductDTO> listdto = new ArrayList<>();		
 		List<Product> list = repo.listProductForCus();
-		
+//		list.forEach(v-> listdto.add(ProductMapper.toProductDTO(v)));
 		for(Product item: list) {	
 			listdto.add(ProductMapper.toProductDTO(item));
 		}
